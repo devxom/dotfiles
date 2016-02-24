@@ -1,0 +1,111 @@
+body, html, div, p{
+   font-family: Monaco, sans-serif;
+}
+
+/* labels   title   icons - one row = mini UI */
+.list-card-labels {
+    float: left;
+    margin: 3px 0;
+}
+.list-card-title {
+    display: inline;
+}
+
+/* checklist count - green>gray */
+.checklist-item.checklist-item-state-complete > .checklist-item-checkbox.enabled.js-toggle-checklist-item > .icon-sm.icon-check.checklist-item-checkbox-check {
+    color: #4caf50 !important;
+}
+
+/* card - wider */
+.window {
+    width: 830px;
+}
+.window-main-col {
+    width: 646px;
+}
+
+/* card - "edit" link hide */
+.card-detail-item-header,
+.card-detail-item-header-edit {
+    display: none;
+}
+
+/* checklist - strike remove */
+.checklist-item-state-complete .checklist-item-details-text {
+    text-decoration: none;
+}
+
+
+/*fix bug https://trello.com/c/VaBhxvyq/237-nested-lists-in-markdown-broken */
+.markeddown ul li {
+    margin: 0 0 8px 0;
+    list-style: disc outside none;
+}
+.markeddown ul,
+.markeddown ol {
+    margin: 4px 0 16px 16px;
+}
+
+/* Makes label text visible on cards */
+.list-card-labels .card-label {
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 18px;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    padding: 0 6px;
+    /*     text-shadow: none; */
+    /*     background-color: #ccc; */
+    /*     color: #37474F; */
+}
+
+/* Trello Card IDs */
+.card-short-id {
+    font-size: 11px;
+    line-height: 16px;
+    position: relative;
+    display: inline !important;
+    float: left;
+    height: 16px;
+    margin-right: 4px;
+    padding: 0 4px;
+    cursor: default;
+    text-decoration: none;
+    color: #212121;
+    border: 1px solid #d9d9d9;
+    border-bottom-color: #d3d3d3;
+    border-radius: 2px;
+}
+
+/* Fixes lineheight issues for badges */
+.badge {
+    font-size: 11px;
+    line-height: 18px;
+    border-radius: 3px;
+}
+
+/*  */
+.board-tile {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 5px 0 rgba(0, 0, 0, .23);
+}
+.board-tile:hover {
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, .19), 0 6px 3px 0 rgba(0, 0, 0, .23);
+}
+.list-card {
+    box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, .12), 0 1px 1px 0 rgba(0, 0, 0, .24);
+}
+.list-card:hower {
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, .19), 0 6px 3px 0 rgba(0, 0, 0, .23);
+}
+.checklist-progress-bar-current.js-checklist-progress-bar {
+    background: #009688;
+}
+.list.js-list-content {
+    box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, .12), 0 1px 1px 0 rgba(0, 0, 0, .24);
+}
+
+/* body {
+    background-image: url("") !important;
+    background-color: #9E9E9E !important;
+} */
