@@ -1,0 +1,196 @@
+# i3 config file
+# devxom 04.18.2015
+
+# Variables
+set $mod        Mod4
+
+set $ws1        1:web
+set $ws2        2:work
+set $ws3        3:data
+set $ws4        4:trm
+
+# Font for window titles
+font pango: Monaco 10
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+popup_during_fullscreen ignore
+focus_follows_mouse no
+workspace_layout tabbed
+new_window 1pixel
+
+bindsym $mod+m move scratchpad
+bindsym $mod+o scratchpad show
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# change focus
+bindsym $mod+j         focus left
+bindsym $mod+k         focus down
+bindsym $mod+l         focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left     focus left
+bindsym $mod+Down     focus down
+bindsym $mod+Up       focus up
+bindsym $mod+Right    focus right
+
+# move focused window
+bindsym $mod+Shift+j     move left
+bindsym $mod+Shift+k     move down
+bindsym $mod+Shift+l     move up
+bindsym $mod+Shift+colon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+bindsym $mod+t border toggle
+
+#bindsym $mod+a [class="Xfce4-terminal" title="VIM"] focus
+# focus the child container
+#bindsym $mod+d focus child
+bindsym $mod+c move absolute position center
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1; layout tabbed
+bindsym $mod+2 workspace $ws2; layout tabbed
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4; layout tabbed
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+
+    bindsym j resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym l resize shrink height 10 px or 10 ppt
+    bindsym semicolon resize grow width 10 px or 10 ppt
+
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod + r mode "resize"
+bindsym $mod+Control+Left  workspace prev
+bindsym $mod+Control+Right workspace next
+
+# Autorun
+exec --no-startup-id setxkbmap "us,ru" -option "grp:caps_toggle,grp_led:scroll"
+exec --no-startup-id rofi
+exec --no-startup-id dunst
+exec --no-startup-id devmon
+exec --no-startup-id compton -CGb
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id dropbox start
+exec --no-startup-id gxkb
+#exec --no-startup-id redshift
+#exec --no-startup-id deadbeef
+
+# Hotkeys
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 -q set Master 1%-
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 0 -q set Master 1%+
+bindsym XF86Calculator exec qalculate
+bindsym Mod4+Control+t exec urxvt
+bindsym Mod4+Control+b exec google-chrome
+bindsym Mod4+Control+f exec pcmanfm
+bindsym Mod4+Control+e exec subl
+bindsym $mod+Control+d exec /opt/deadbeef/bin/deadbeef
+bindsym Mod4+Control+z exec lxtask
+bindsym Print exec gyazo
+bindsym $mod+Tab       exec rofi
+bindsym XF86PowerOff   exec systemctl poweroff
+bindsym Mod4+Control+l exec slimlock
+
+#Float
+#          xprop | grep -i 'class'         #
+for_window [class="Qalculate"]          floating enable
+for_window [class="Nitrogen"]           floating enable
+for_window [class="Lxappearance"]       floating enable
+for_window [class="File-roller" ]       floating enable
+for_window [class="urxvt"]              border pixel 2
+for_window [title=".*Counter-Strike.*"] fullscreen
+
+# Automatically putting clients on specific workspaces
+assign [class="Xfce4-terminal"]         → $ws4
+assign [class="Pcmanfm"]                → $ws3
+assign [class="Transmission"]           → $ws1
+assign [class="File-roller"]            → $ws3
+assign [class="Firefox"]                → $ws1
+
+bar
+{
+    status_command      sh ~/.i3/conkyi3.sh
+    mode                hide
+    #workspace_buttons   yes
+    position            top
+    font                pango:Fira Mono 10
+#colors
+        colors
+        {
+                background         #191919
+                separator          #191919
+                statusline         #191919
+                #class             border  backgr. text
+                focused_workspace  #2B7051 #191919 #2B7051
+                active_workspace   #2B7051 #191919 #2B7051
+                inactive_workspace #191919 #191919 #FFFFFF
+                urgent_workspace   #2B7051 #2B7051 #FFFFFF
+        }
+}
+# class                  border  backgr.  text   indicator
+client.focused           #2B7051 #191919 #FFFFFF #F9F9F9
+client.focused_inactive  #696969 #191919 #696969 #191919
+client.unfocused         #191919 #191919 #696969 #696969
+client.urgent            #2B7051 #2B7051 #FFFFFF #F9F9F9
