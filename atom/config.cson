@@ -61,7 +61,7 @@
   "file-icons":
     forceShow: true
   gist:
-    token: "883c232078f64c33c5e08fed67a7ffc538091855"
+    token: "token"
   "imdone-atom-github": {}
   linter:
     lintOnFly: false
@@ -99,7 +99,7 @@
     _analyticsUserId: "5d64d0c1-b4fe-4e22-a587-b2abfadb1165"
     _lastBackupHash: "4c9831ca472c7be22ed96ba4dd48e4346cfc291b"
     gistId: "ddb39255752971838a7f"
-    personalAccessToken: "274751fed216d09f63323af732c2810c6cc65750"
+    personalAccessToken: "token"
   tabs:
     enableVcsColoring: true
     usePreviewTabs: true
@@ -118,4 +118,4 @@
     preferredLineLength: 120
 "sync-settings":
   gistId: "ddb39255752971838a7f"
-  personalAccessToken: "900aaaa66669305f5903d0d07f2c755baabd44e7"
+  personalAccessToken: "token"
