@@ -4,7 +4,8 @@
 # Should you change your keyboard layout somewhen, delete
 # this file and re-run i3-config-wizard(1).
 #
-
+# TODO: Merge 2 i3 cofig
+# 
 # i3 config file (v4)
 #33
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!

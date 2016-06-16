@@ -20,6 +20,8 @@ sudo nano /etc/resolv.conf
 # OpenNic DNS
 91.214.71.181
 193.183.98.154
+5.9.49.12
+89.111.13.60
 #Yandex Basic DNS
 77.88.8.8
 77.88.8.1
@@ -41,3 +43,18 @@ sudo nano /etc/resolv.conf
 # Norton Security + Pornography + Other: Adds blocking of other mature content, like alcohol, crime, drugs and gambling
 199.85.126.30
 199.85.127.30
+##DNS.WATCH
+82.200.69.80
+84.200.70.40
+##Level3 DNS
+209.244.0.3
+209.244.0.4
+4.2.2.1
+4.2.2.2
+4.2.2.3
+4.2.2.4
+##Comodo Secure DNS
+8.26.56.26
+8.20.247.20
+
+
