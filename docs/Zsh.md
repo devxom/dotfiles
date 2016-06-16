@@ -1,14 +1,14 @@
 # zsh Aliases
 
-| Alias | Description |
-| ----- | ----------- |
-| `o` | `open` |
-| `oo` | `open .` |
-| `e` | `$EDITOR` |
-| `gh` | `github` |
-| `+x` / `x+` | `chmod +x` |
-| `c` | Trim new lines and copy text to the clipboard. |
-| `cdf` | `cd` into whatever is the forefront Finder window. |
+|    Alias   | Description |
+| -----------| ----------- |
+| `o`        | `open`      |
+| `oo`       | `open .`    |
+| `e`        | `$EDITOR`   |
+| `gh`       | `github`    |
+| `+x`       | `chmod +x`  |
+| `c`        | Trim new lines and copy text to the clipboard. |
+| `cdf`      | `cd` into whatever is the forefront Finder window. |
 | `dotfiles` | Update dotfiles. Pull latest version from GitHub, syncronize symlinks and reread `~/.zshrc`. |
 | `repo <project>` | Change current directory to the project’s Git repo. Uses fuzzy search. |
 | `emptytrash` | Empty the Trash on all mounted volumes and the main HDD. Also, clear Apple’s System Logs to improve shell startup speed. |
