@@ -1,0 +1,99 @@
+# Console tools
+tmux
+vim
+gnupg2
+curl
+htop
+tar
+git
+mc
+expect
+scrot
+pwgen
+zip
+p7zip
+unrar
+wireshark
+xterm
+wget
+
+# GUI apps
+libreoffice
+firefox
+geary
+gimp
+mpv
+keepassx
+google-chrome-unstable
+gnome-tweak-tool
+
+# X utils
+xorg-x11-apps
+xorg-x11-fonts-misc
+xsel
+xdotool
+wmctrl
+freetype-devel cmake
+
+# System
+powertop
+traceroute
+whois
+screen
+nmap
+
+# Haskell
+# haskell-platform
+# golang
+# ruby
+# rubygems
+
+# JS
+nodejs
+npm
+
+# Fonts
+google-droid-*-fonts
+liberation-fonts
+levien-inconsolata-fonts
+adobe-source-code-pro-fonts
+mozilla-fira-mono-fonts
+freetype-freeworld
+
+# Media plugins
+gstreamer-plugins-bad
+gstreamer-plugins-bad-free-extras
+gstreamer-plugins-ugly
+gstreamer-ffmpeg
+gstreamer1-libav
+gstreamer1-plugins-bad-free-extras
+gstreamer1-plugins-bad-freeworld
+gstreamer1-plugins-base-tools
+gstreamer1-plugins-good-extras
+gstreamer1-plugins-ugly
+gstreamer1-plugins-bad-free
+gstreamer1-plugins-good
+gstreamer1-plugins-base
+gstreamer1
+
+# Docker
+docker
+docker-compose
+docker-vim
+
+# Vocabular
+stardict
+stardict-dic-en
+stardict-dic-ru
+
+# shutter freemind dia 
+evince-djvu
+transmission
+filezilla
+
+# SpellCheck
+hunspell-en-US
+hunspell-ru
+hunspell-uk
+libreoffice-langpack-ru
+libreoffice-langpack-uk
