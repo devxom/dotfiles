@@ -20,10 +20,9 @@ sudo chsh -s $(which zsh) $(whoami)
 
 curl -sL https://rpm.nodesource.com/setup_6.x | bash -
 
-
+wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
 
 dnf -y install https://dl.google.com/linux/direct/google-talkplugin_current_$(uname -i).rpm
-
 
 dnf groupinstall "Development Tools"
 dnf install $(grep fedora_packages.txt -v -e '^#' -e '^$' | tr '\n' ' ')

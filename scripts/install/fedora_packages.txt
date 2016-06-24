@@ -2,20 +2,15 @@
 tmux
 vim
 gnupg2
-curl
-htop
 tar
 git
-mc
-expect
-scrot
-pwgen
 zip
 p7zip
 unrar
-wireshark
+htop
 xterm
-wget
+ranger
+wireshark
 
 # GUI apps
 libreoffice
@@ -25,15 +20,14 @@ gimp
 mpv
 keepassx
 google-chrome-unstable
-gnome-tweak-tool
+evince
+evince-djvu
+transmission
+filezilla
 
 # X utils
-xorg-x11-apps
-xorg-x11-fonts-misc
-xsel
-xdotool
-wmctrl
-freetype-devel cmake
+freetype-devel
+cmake
 
 # System
 powertop
@@ -41,24 +35,6 @@ traceroute
 whois
 screen
 nmap
-
-# Haskell
-# haskell-platform
-# golang
-# ruby
-# rubygems
-
-# JS
-nodejs
-npm
-
-# Fonts
-google-droid-*-fonts
-liberation-fonts
-levien-inconsolata-fonts
-adobe-source-code-pro-fonts
-mozilla-fira-mono-fonts
-freetype-freeworld
 
 # Media plugins
 gstreamer-plugins-bad
@@ -76,24 +52,53 @@ gstreamer1-plugins-good
 gstreamer1-plugins-base
 gstreamer1
 
-# Docker
-docker
-docker-compose
-docker-vim
-
-# Vocabular
-stardict
-stardict-dic-en
-stardict-dic-ru
-
-# shutter freemind dia 
-evince-djvu
-transmission
-filezilla
-
 # SpellCheck
-hunspell-en-US
-hunspell-ru
-hunspell-uk
 libreoffice-langpack-ru
 libreoffice-langpack-uk
+
+# JS
+nodejs
+npm
+
+# Fonts
+google-droid-*-fonts
+liberation-fonts
+levien-inconsolata-fonts
+adobe-source-code-pro-fonts
+mozilla-fira-mono-fonts
+freetype-freeworld
+
+# SpellCheck
+# hunspell-en-US
+# hunspell-ru
+# hunspell-uk
+## Vocabular
+# stardict
+# stardict-dic-en
+# stardict-dic-ru
+## Docker
+# docker
+# docker-compose
+# docker-vim
+##Terminal
+# scrot
+# pwgen
+# curl
+# wget
+# expect
+## GUI apps
+# gnome-tweak-tool
+# shutter
+# freemind
+# dia
+## X utils
+# xorg-x11-apps
+# xorg-x11-fonts-misc
+# xsel
+# xdotool
+# wmctrl
+## Haskell
+# haskell-platform
+# golang
+# ruby
+# rubygems
