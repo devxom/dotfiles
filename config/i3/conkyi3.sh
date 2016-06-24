@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Send the header so that i3bar knows we want to use JSON:
-echo '{"version":1}'
+echo '{ "version": 1 }'
 
 # Begin the endless array.
 echo '['
@@ -10,4 +10,4 @@ echo '['
 echo '[],'
 
 # Now send blocks with information forever:
-exec conky -c /home/devxom/.i3/conkyrci3
+exec conky -c ~/.config/i3/conkyrci3

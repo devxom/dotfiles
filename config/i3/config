@@ -1,0 +1,317 @@
+# i3 config file
+# devxom upd 24/06/2016
+
+# # Variables
+set $mod   Mod4
+set $alt   Mod1
+
+# assign workspace variables
+set $ws1  "1:term"
+set $ws2  "2:git"
+set $ws3  "3:other"
+set $ws4  "4:web"
+set $ws5  "5:code"
+set $ws6  "6:mail"
+
+# Colour constants
+set $base00        #657b83
+set $base01        #586e75
+set $base02        #073642
+set $base03        #002b36
+set $base04        #839496
+set $base05        #93a1a1
+set $base06        #eee8d5
+set $base07        #fdf6e3
+set $base_yellow   #b58900
+set $base_orange   #cb4b16
+set $base_red      #dc322f
+set $base_magenta  #d33682
+set $base_violet   #6c71c4
+set $base_blue     #268bd2
+set $base_cyan     #2aa198
+set $base_green    #859900
+
+# Font for window titles
+font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font pango: Hack 10
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+popup_during_fullscreen ignore
+focus_follows_mouse no
+workspace_layout tabbed
+# new_window 1pixel
+new_window none
+hide_edge_borders both
+
+bindsym $mod+m move scratchpad
+bindsym $mod+o scratchpad show
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# change focus
+bindsym $mod+j           focus left
+bindsym $mod+k           focus down
+bindsym $mod+l           focus up
+bindsym $mod+semicolon   focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left        focus left
+bindsym $mod+Down        focus down
+bindsym $mod+Up          focus up
+bindsym $mod+Right       focus right
+
+# move focused window
+bindsym $mod+Shift+j     move left
+bindsym $mod+Shift+k     move down
+bindsym $mod+Shift+l     move up
+bindsym $mod+Shift+colon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+bindsym $mod+t border toggle
+
+# focus the child container
+bindsym $mod+d focus child
+bindsym $mod+c move absolute position center
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1; layout tabbed
+bindsym $mod+2 workspace $ws2; layout tabbed
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4; layout tabbed
+bindsym $mod+5 workspace $ws5; layout tabbed
+bindsym $mod+6 workspace $ws6; layout tabbed
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# exit i3 (logs you out of your X session)
+bindsym Control+$Alt+Return exec i3-msg exit
+# shutdown computer
+bindsym Control+$Alt+Delete exec systemctl poweroff
+# reboot computer
+bindsym Control+$Alt+BackSpace exec systemctl reboot
+# lock screen
+bindsym Control+$Alt+l exec mate-screensaver-command -
+
+# resize window (you can also use the mouse for that)
+mode "" {
+
+    bindsym j resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym l resize shrink height 10 px or 10 ppt
+    bindsym semicolon resize grow width 10 px or 10 ppt
+
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod + r mode ""
+bindsym $mod+Control+Left  workspace prev
+bindsym $mod+Control+Right workspace next
+
+set $left  VGA1
+set $right HDMI1
+
+# Autorun
+# exec --no-startup-id
+exec --no-startup-id setxkbmap "us,ru" -option "grp:alt_shift_toggle,grp_led:scroll"
+exec --no-startup-id rofi
+exec --no-startup-id ~/.TelegramDesktop/./Updater
+exec --no-startup-id megasync
+exec --no-startup-id rescuetime
+exec --no-startup-id dunst -config ~/.dunstrc
+exec_always xrandr --output VIRTUAL1 --off --output DP3 --off --output DP2 --off --output DP1 --off --output HDMI3 --off --output HDMI2 --off --output HDMI1 --mode 1600x900 --pos 1920x0 --rotate normal --output VGA1 --mode 1920x1080 --pos 0x0 --rotate normal
+
+# Hotkeys
+bindsym $mod+Control+t       exec Xfce4-terminal
+bindsym $mod+Control+b       exec google-chrome-unstable
+bindsym $mod+Control+f       exec nautilus
+bindsym $mod+Control+e       exec subl
+bindsym $mod+Control+d       exec deadbeef
+bindsym XF86PowerOff         exec systemctl poweroff
+bindsym Print                exec --no-startup-id scrot 'Devxom%Y-%m-%d-%T.png' -e 'mv $f ~/Pictures/'
+bindsym $mod+Tab             exec rofi -show run -font "Hack 10" -o 85
+bindsym $mod+Shift+i         exec i3-sensible-terminal -e alsamixer
+bindsym $alt+b               exec "xsel -op | xsel -ib"
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Alsa Audio controls
+# bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 -q set Master 1%-
+# bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 0 -q set Master 1%+
+
+#Float
+#    xprop | grep -i 'class'         #
+for_window [class="Nitrogen"]               floating enable
+for_window [class="Lxappearance"]           floating enable
+for_window [class="File-roller" ]           floating enable
+for_window [class="Skype" ]                 floating enable
+for_window [class="mpv" ]                   floating enable
+for_window [class="Gnome-contacts" ]        floating enable
+
+# Decorate
+for_window [class="urxvt"]                  border pixel 2
+for_window [class="(?i)pavucontrol"] floating enable, border normal, move position mouse
+
+# Set Background
+exec --no-startup-id feh --bg-fill ~/Pictures/Wallpaper.png
+
+# Automatically putting clients on specific workspaces
+workspace $ws1 output $left  # Term
+workspace $ws2 output $left  # git
+workspace $ws3 output $left  # gui shit - skype
+
+workspace $ws4 output $right # web
+workspace $ws5 output $right # code
+workspace $ws6 output $right # mail
+
+assign [class="Xfce4-terminal"]         → $ws4
+assign [class="Transmission"]           → $ws1
+assign [class="File-roller"]            → $ws3
+assign [class="Firefox"]                → $ws4
+assign [class="Google-chrome-unstable"] → $ws4
+assign [class="Subl"]                   → $ws5
+assign [class="GitKraken"]              → $ws2
+
+# Automatically hide titlebar
+# new_window none
+# for_window [class="^.*"] border pixel 0
+
+#Shutdown,Reboot,Lock Screen
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l       exec --no-startup-id i3lock --color '$base_cyan', mode "default"
+    bindsym e       exec --no-startup-id i3exit logout, mode "default"
+    bindsym s       exec --no-startup-id i3exit suspend, mode "default"
+    bindsym h       exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r       exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Pause mode "$mode_system"
+
+bar
+{
+    separator_symbol "|"
+    # status_command sh ~/.config/i3/conkyi3.sh
+    status_command i3status -c ~/.config/i3/i3status.conf
+    mode dock
+    workspace_buttons yes
+    position            top
+    font                pango:Hack 10
+      colors
+        {
+            separator  $base03
+            background $base03
+            statusline $base05
+            #                  border  backgr. text
+            focused_workspace  $base02 $base02 $base06
+            active_workspace   $base03 $base03 $base05
+            inactive_workspace $base03 $base03 $base05
+            urgent_workspace   $base03 $base03 $base05
+
+
+        }
+}
+# class                  border  backgr.  text   indicator
+client.focused          $base06 $base03    $base06 $base02
+client.focused_inactive $base02 $base02    $base06 $base02
+client.unfocused        $base02 $base02    $base05 $base03
+client.urgent           $base03 $base06    $base03 $base06
+
+
+# exec --no-startup-id devmon
+# exec --no-startup-id gxneur
+# exec --no-startup-id compton -cCGb --backend glx --vsync opengl
+# exec --no-startup-id compton -CGb
+# exec --no-startup-id nitrogen --restore
+# exec --no-startup-id gxkb
+# exec --no-startup-id redshift
+# exec --no-startup-id deadbeef
+# exec --no-startup-id dropbox start
+# bindsym $mod+Control+z exec lxtask
+# bindsym Print exec gyazo
+# bindsym $mod+Control+l       exec slimlock
+# # assign [class="Pcmanfm"]                → $ws3
+# for_window [window_role="pop-up"] floating enable
+# for_window [window_role="bubble"] floating enable
+# for_window [window_role="task_dialog"] floating enable
+# for_window [window_role="Preferences"] floating enable
+
+# for_window [window_type="dialog"] floating enable
+# for_window [window_type="menu"] floating enable
+
+# for_window [class="(?i)gsimplecal"] floating enable, move position mouse
+# for_window [class="(?i)qemu-system"] floating enable
+# for_window [class="(?i)VirtualBox" title="(?i)Manager"] floating enable
+#
+# # background         #191919
+# separator          #191919
+# statusline         #191919
+# #class             border  backgr. text
+# focused_workspace  #2B7051 #191919 #2B7051
+# active_workspace   #2B7051 #191919 #2B7051
+# inactive_workspace #191919 #191919 #FFFFFF
+# urgent_workspace   #2B7051 #2B7051 #FFFFFF
+
+# client.focused           #2B7051 #2B7051 #FFFFFF #F9F9F9
+# client.focused_inactive  #696969 #191919 #696969 #191919
+# client.unfocused         #191919 #191919 #696969 #696969
+# client.urgent            #2B7051 #2B7051 #FFFFFF #F9F9F9

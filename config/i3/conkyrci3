@@ -1,0 +1,15 @@
+background        no
+out_to_x      no
+out_to_console    yes
+update_interval   0.5
+total_run_times   0
+short_units       yes
+uppercase         no
+use_spacer        no
+
+TEXT
+[
+{"full_text": "${if_running deadbeef-gtkui}${execi 3 deadbeef --nowplaying "%a - %t (%e/%l)"}${endif}", "color" : "\#00B386"},
+{"full_text" : "WiFi Down: ${downspeed wlp6s0} Up: ${upspeed wlp6s0}" , "color" : "\#00B386"},
+{"full_text": "[${time %d}.${time %m} ${time %a}, ${time %H:%M}]" , "color":"\#00B386"}
+],
