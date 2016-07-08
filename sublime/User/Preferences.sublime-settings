@@ -1,0 +1,104 @@
+{
+	"auto_complete": true,
+	"auto_complete_delay": 1000,
+	"auto_match_enabled": false,
+	"bold_folder_labels": true,
+	"caret_extra_width": 1,
+	"caret_style": "solid",
+	"color_inactive_tabs": true,
+	"color_scheme": "Packages/User/SublimeLinter/Pastels on Dark (SL).tmTheme",
+	"create_window_at_startup": false,
+	"default_line_ending": "unix",
+	"detect_indentation": true,
+	"detect_slow_plugins": false,
+	"dpi_scale": 1,
+	"drag_text": true,
+	"draw_indent_guides": true,
+	"draw_white_space": "all",
+	"enable_tab_scrolling": false,
+	"ensure_newline_at_eof_on_save": true,
+	"fallback_encoding": "Cyrillic (Windows 1251)",
+	"file_exclude_patterns":
+	[
+		".*_*",
+		"*.pyc",
+		"*.pyo",
+		".DS_Store",
+		"*.psd",
+		"*.db",
+		"*.sublime-workspace"
+	],
+	"fold_buttons": true,
+	"folder_exclude_patterns":
+	[
+		".git",
+		".vscode",
+		"log",
+		"tmp",
+		".cache",
+		"__pycache__",
+		".git",
+		".vagrant",
+		"node_modules",
+		"bower_components"
+	],
+	"font_face": "Hack",
+	"font_options":
+	[
+		"gray_antialias",
+		"subpixel_antialias"
+	],
+	"font_size": 10,
+	"hayaku_CSS_colors_case": "lowercase",
+	"hayaku_CSS_numbers_leading_zero": false,
+	"hayaku_CSS_syntax_autoguess":
+	[
+		"selector {",
+		"	property:value;",
+		"	}"
+	],
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"hot_exit": false,
+	"ignored_packages":
+	[
+		"Markdown",
+		"Vintage"
+	],
+	"indent_guide_options":
+	[
+		"draw_normal",
+		"draw_active"
+	],
+	"itg_small_tabs": true,
+	"line_numbers": true,
+	"line_padding_bottom": 1,
+	"line_padding_top": 1,
+	"new_window_settings":
+	{
+		"hide_open_files": true,
+		"show_tabs": true,
+		"side_bar_visible": true,
+		"status_bar_visible": false
+	},
+	"open_files_in_new_window": false,
+	"overlay_scroll_bars": "enabled",
+	"rulers":
+	[
+		80,
+		120
+	],
+	"save_on_focus_lost": true,
+	"scroll_past_end": true,
+	"stats_format": "☐$o ✔$d ✘$c",
+	"stats_ignore_archive": true,
+	"sublimelinter": true,
+	"tab_completion": true,
+	"tab_size": 2,
+	"tabs_medium": true,
+	"theme": "Soda Dark.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"wide_caret": true,
+	"word_wrap": true
+}

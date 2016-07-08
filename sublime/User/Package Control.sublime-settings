@@ -1,0 +1,40 @@
+{
+	"auto_upgrade_last_run": null,
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"AdvancedNewFile",
+		"Alignment",
+		"Babel",
+		"Color Highlighter",
+		"DocBlockr",
+		"Dotfiles Syntax Highlighting",
+		"EditorConfig",
+		"Emmet",
+		"GitGutter",
+		"Hayaku - tools for writing CSS faster",
+		"HTML-CSS-JS Prettify",
+		"HTML5",
+		"Jade",
+		"LESS",
+		"MarkdownEditing",
+		"NodeRequirer",
+		"Package Control",
+		"PlainTasks",
+		"SCSS",
+		"Stylus",
+		"SublimeLinter",
+		"SublimeLinter-contrib-eslint",
+		"SublimeLinter-contrib-scss-lint",
+		"SublimeLinter-jscs",
+		"SublimeLinter-jshint",
+		"SublimeLinter-json",
+		"Theme - El Capitan",
+		"Theme - Soda",
+		"TrailingSpaces",
+		"View In Browser"
+	]
+}
