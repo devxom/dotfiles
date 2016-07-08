@@ -80,6 +80,8 @@ stations=(
 'SomaFM: Covers'="http://somafm.com/covers.pls"
 'SomaFM: Black Rock FM'="http://somafm.com/brfm.pls"
 'DigitalImporting: Ambient'="http://pub7.di.fm/di_ambient_aac?1"
+'Devzen  Sat 22:00 msk'="http://5.101.105.97:8000/stream?type=.mp3"
+'Radio-t Sat 23:00 msk'="http://stream.radio-t.com/"
 )
 
 #show_inf () {
