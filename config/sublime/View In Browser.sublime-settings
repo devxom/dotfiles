@@ -1,0 +1,12 @@
+{
+	"supportedBrowsers": {
+		"linux": {
+			// "firefox": "firefox -new-tab",
+			"canary": "google-chrome-unstable",
+			"chrome64": "google-chrome-beta",
+			"chromium": "chromium"
+		},
+	},
+
+	"selectedBrowser": "canary"
+}

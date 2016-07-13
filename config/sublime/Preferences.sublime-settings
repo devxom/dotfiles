@@ -1,40 +1,48 @@
 {
-	"Seti_orange_button": true,
-	"always_show_minimap_viewport": false,
 	"auto_complete": true,
+	"auto_complete_delay": 1000,
+	"auto_match_enabled": false,
+	"auto_close_tags":true,
 	"bold_folder_labels": true,
-	"caret_extra_bottom": 3,
-	"caret_extra_top": 3,
-	"caret_extra_width": 2,
-	"caret_style": "phase",
+	"caret_extra_width": 1,
+	"caret_style": "solid",
 	"color_inactive_tabs": true,
-	"color_scheme": "Packages/gruvbox/gruvbox (Dark) (Hard).tmTheme",
+	"color_scheme": "Packages/User/SublimeLinter/base16-ocean.dark (SL).tmTheme",
+	"create_window_at_startup": false,
 	"default_line_ending": "unix",
 	"detect_indentation": true,
+	"detect_slow_plugins": false,
 	"dpi_scale": 1,
 	"draw_indent_guides": true,
 	"draw_white_space": "all",
+	"enable_tab_scrolling": false,
 	"ensure_newline_at_eof_on_save": true,
+	"gutter":true,
+	"margin":2,
+	"fallback_encoding": "Cyrillic (Windows 1251)",
 	"file_exclude_patterns":
 	[
-		"*.DS_Store",
+		".*_*",
 		"*.pyc",
-		"*.git",
-		"*.beam",
-		"*.bak",
-		"*.map"
+		"*.pyo",
+		".DS_Store",
+		"*.psd",
+		"*.db",
+		"*.sublime-workspace"
 	],
 	"fold_buttons": true,
 	"folder_exclude_patterns":
 	[
 		".git",
+		".vscode",
 		"log",
 		"tmp",
 		".cache",
 		"__pycache__",
 		".git",
 		".vagrant",
-		"node_modules"
+		"node_modules",
+		"bower_components"
 	],
 	"font_face": "Hack",
 	"font_options":
@@ -42,13 +50,22 @@
 		"gray_antialias",
 		"subpixel_antialias"
 	],
-	"font_size": 10,
+	"font_size": 11,
+	"hayaku_CSS_colors_case": "lowercase",
+	"hayaku_CSS_numbers_leading_zero": false,
+	"hayaku_CSS_syntax_autoguess":
+	[
+		"selector {",
+		"	property:value;",
+		"	}"
+	],
 	"highlight_line": true,
-	"highlight_modified_tabs": true,
+	"highlight_moded_tabs": true,
 	"hot_exit": false,
 	"ignored_packages":
 	[
-		"CSS",
+		"Markdown",
+		"MarkdownEditing",
 		"Vintage"
 	],
 	"indent_guide_options":
@@ -58,14 +75,8 @@
 	],
 	"itg_small_tabs": true,
 	"line_numbers": true,
-	"line_padding_bottom": 2,
+	"line_padding_bottom": 1,
 	"line_padding_top": 1,
-	"match_brackets": true,
-	"match_brackets_angle": true,
-	"match_brackets_braces": true,
-	"match_brackets_content": true,
-	"match_brackets_square": true,
-	"mouse_wheel_tabswitch": true,
 	"new_window_settings":
 	{
 		"hide_open_files": true,
@@ -73,23 +84,25 @@
 		"side_bar_visible": true,
 		"status_bar_visible": false
 	},
+	"open_files_in_new_window": false,
 	"overlay_scroll_bars": "enabled",
-	"remember_open_files": false,
 	"rulers":
 	[
-		80,
-		120
+		80, 120
 	],
-	"save_on_focus_lost": false,
-	"side_bar_width": 220,
-	"sidebar_no_icon": false,
-	"sidebar_size_13": true,
+	"save_on_focus_lost": true,
+	"scroll_past_end": true,
+	"stats_format": "☐$o ✔$d ✘$c",
+	"stats_ignore_archive": true,
 	"sublimelinter": true,
+	"tab_completion": true,
 	"tab_size": 2,
 	"tabs_medium": true,
-	"theme": "Default.sublime-theme",
+	"theme": "Spacegray.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"wide_caret": true,
-	"word_wrap": true
+	"word_wrap": true,
+	// "show_tab_close_buttons":false,
+	"show_encoding": true
 }

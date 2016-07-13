@@ -1,6 +1,6 @@
 [global]
     #font = Monospace 8
-    font = Droid Sans 10
+    font = Hack 10
 
     # Allow a small subset of html markup:
     #   <b>bold</b>
@@ -22,7 +22,7 @@
     #   %I  iconname (without its path)
     #   %p  progress value if set ([  0%] to [100%]) or nothing
     # Markup is allowed
-    format = "<b>%s</b>\n%b"
+    format = "<u>%a</u>\n<b>%s</b>\n%b"
     #format = "%s\n%b"
 
     # Sort messages by urgency.
@@ -66,7 +66,7 @@
     # the top and down respectevly.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "300x5-24+48"
+    geometry = "350x5-24+64"
 
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
@@ -75,7 +75,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing windowmanager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 70
+    transparency = 10
 
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
@@ -119,10 +119,10 @@
     separator_height = 2
 
     # Padding between text and separator.
-    padding = 8
+    padding = 4
 
     # Horizontal padding.
-    horizontal_padding = 8
+    horizontal_padding = 4
 
     # Define a color for the separator.
     # possible values are:
@@ -130,7 +130,7 @@
     #  * foreground: use the same color as the foreground;
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
-    separator_color = frame
+    separator_color = foreground
 
     # Print a notification on startup.
     # This is mainly for error detection, since dbus (re-)starts dunst
@@ -141,20 +141,18 @@
     dmenu = /usr/bin/dmenu -p dunst:
 
     # Browser for opening urls in context menu.
-    browser = /usr/bin/firefox -new-tab
+    browser = /usr/bin/google-chrome-unstable %u
 
     # Align icons left/right/off
     icon_position = off
 
     # Paths to default icons.
-    #icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
-    icon_folders = /usr/share/icons/Flattr/status/scalable/:/usr/share/icons/Flattr/devices/scalable/
+    icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    #icon_folders = /usr/share/icons/Flattr/status/scalable/:/usr/share/icons/Flattr/devices/scalable/
 
 [frame]
-    #width = 3
-    #color = "#aaaaaa"
-    width = 0
-    color = "#111113"
+    width = 1
+    color = "#9E9E9E"
 
 [shortcuts]
 
@@ -178,20 +176,71 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#26282B"
-    foreground = "#CECFD1"
+    background = "#EEEEEE"
+    foreground = "#212121"
     timeout = 5
 
 [urgency_normal]
-    #background = "#285577"
-    #foreground = "#CECFD1"
-    background = "#26282B"
-    foreground = "#CECFD1"
+    background = "#EEEEEE"
+    foreground = "#212121"
     timeout = 5
 
 [urgency_critical]
-    background = "#26282B"
-    foreground = "#CECFD1"
+    background = "#D32F2F"
+    foreground = "#FFCDD2"
     timeout = 0
+
+
+# Every section that isn't one of the above is interpreted as a rules to
+# override settings for certain messages.
+# Messages can be matched by "appname", "summary", "body", "icon", "category",
+# "msg_urgency" and you can override the "timeout", "urgency", "foreground",
+# "background", "new_icon" and "format".
+# Shell-like globbing will get expanded.
+#
+# SCRIPTING
+# You can specify a script that gets run when the rule matches by
+# setting the "script" option.
+# The script will be called as follows:
+#   script appname summary body icon urgency
+# where urgency can be "LOW", "NORMAL" or "CRITICAL".
+#
+# NOTE: if you don't want a notification to be displayed, set the format
+# to "".
+# NOTE: It might be helpful to run dunst -print in a terminal in order
+# to find fitting options for rules.
+
+#[espeak]
+#    summary = "*"
+#    script = dunst_espeak.sh
+
+#[script-test]
+#    summary = "*script*"
+#    script = dunst_test.sh
+
+#[ignore]
+#    # This notification will not be displayed
+#    summary = "foobar"
+#    format = ""
+
+#[signed_on]
+#    appname = Pidgin
+#    summary = "*signed on*"
+#    urgency = low
+#
+#[signed_off]
+#    appname = Pidgin
+#    summary = *signed off*
+#    urgency = low
+#
+#[says]
+#    appname = Pidgin
+#    summary = *says*
+#    urgency = critical
+#
+#[twitter]
+#    appname = Pidgin
+#    summary = *twitter.com*
+#    urgency = normal
+#
+# vim: ft=cfg

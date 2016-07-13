@@ -1,0 +1,96 @@
+th#!/bin/sh
+
+# Wait for program coming up
+wait_for_program () {
+  n=0
+  while true
+  do
+    # PID of last background command
+    if xdotool search --onlyvisible --pid $! 2>/dev/null; then
+      break
+    else
+      if [ $n -eq 90 ]; then
+        notify-send -u critical "Error during start"
+        break
+      else
+        n=`expr $n + 1`
+        sleep 0.5
+      fi
+    fi
+  done
+}
+
+# Set xrand
+xrandr --output VIRTUAL1 --off --output DP3 --off --output DP2 --off --output DP1 --off --output HDMI3 --off --output HDMI2 --off --output HDMI1 --mode 1600x900 --pos 1920x0 --rotate normal --output VGA1 --mode 1920x1080 --pos 0x0 --rotate normal
+
+## Merge Xresources
+xrdb -merge ~/.Xresources &
+
+## Desktop background or picture
+#xsetroot -solid '#101010' &
+feh --bg-fill ~/Pictures/Wallpaper2.png
+
+## Disable beeps
+xset -b &
+
+## Keybord layout setting
+setxkbmap "us,ru" -option "grp:alt_shift_toggle,grp_led:scroll" &
+## C-A-Backspace to kill X
+#setxkbmap -option terminate:ctrl_alt_bksp &
+
+## Turns on the numlock key in X11
+numlockx on &
+
+## DPMS monitor setting (standby -> suspend -> off) (seconds)
+xset dpms 600 1200 2000 &
+
+## Set LCD brightness
+xbacklight -set 100 &
+
+## Gamma correction through the X server
+xgamma -gamma 1.1 &
+
+## Composite manager
+#xcompmgr -cf -r 0 -D 6 &
+# compton -CGb --vsync opengl
+# compton -cCb --backend glx --vsync opengl --xinerama-shadow-crop
+compton -c -r4 -l-6 -t-4 -z -b -G -C -f -D30 -I0.45 -O0.45 --paint-on-overlay --unredir-if-possible --backend glx --glx-no-stencil --glx-no-rebind-pixmap
+
+## OSD
+LC_ALL=C dunst -config ~/.dunstrc &
+
+# $TERMINAL -name mail &
+## IM and mail
+i3-msg workspace $ws6
+i3-msg split h
+/usr/bin/thunderbird &
+/usr/bin/pidgin &
+sleep 5
+i3-msg "split v; layout stacking"
+
+## Refresh
+xrefresh &
+
+## Special keys
+# sleep 5s && xmodmap /home/lzap/.Xmodmap &
+
+## Start taskbar utils
+LC_ALL=C nm-applet &>/dev/null &
+LC_ALL=C zeal &>/dev/null &
+LC_ALL=C rescuetime &>/dev/null &
+LC_ALL=C rofi &
+LC_ALL=C dropbox start &>/dev/null &
+# LC_ALL=C workrave &>/dev/null &
+# LC_ALL=C parcellite &>/dev/null &
+
+## Telegram
+#telegram &
+
+## Update dmenu cache
+dmenu_path >/dev/null&
+
+## OSD
+#megasync
+
+## Good work :-)
+exit 0
