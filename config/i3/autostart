@@ -1,4 +1,4 @@
-th#!/bin/sh
+#!/bin/sh
 
 # Wait for program coming up
 wait_for_program () {
@@ -28,7 +28,7 @@ xrdb -merge ~/.Xresources &
 
 ## Desktop background or picture
 #xsetroot -solid '#101010' &
-feh --bg-fill ~/Pictures/Wallpaper2.png
+feh --bg-fill ~/Pictures/Wallpaper.png
 
 ## Disable beeps
 xset -b &

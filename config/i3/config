@@ -6,12 +6,23 @@ set $mod   Mod4
 set $alt   Mod1
 
 # assign workspace variables
-set $ws1  "1:term"
-set $ws2  "2:git"
-set $ws3  "3:other"
-set $ws4  "4:web"
-set $ws5  "5:code"
-set $ws6  "6:mail"
+
+set $ws1    "1 "
+set $ws2    "2 "
+set $ws3    "3 "
+set $ws4    "4 "
+set $ws5    "5 "
+set $ws6    "6 "
+set $ws7    "7 "
+set $ws8    "8 "
+set $ws9    "9 "
+
+# set $ws1  "1:term"
+# set $ws2  "2:git"
+# set $ws3  "3:other"
+# set $ws4  "4:web"
+# set $ws5  "5:code"
+# set $ws6  "6:mail"
 
 set $mod Mod4
 
@@ -56,17 +67,17 @@ bindsym $mod+Down        focus down
 bindsym $mod+Up          focus up
 bindsym $mod+Right       focus right
 
+## Movement ##
 # move focused window
-bindsym $mod+Shift+j     move left
-bindsym $mod+Shift+k     move down
-bindsym $mod+Shift+l     move up
-bindsym $mod+Shift+colon move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left  move left
-bindsym $mod+Shift+Down  move down
-bindsym $mod+Shift+Up    move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+h            move left
+bindsym $mod+Shift+j            move down
+bindsym $mod+Shift+k            move up
+bindsym $mod+Shift+l            move right
+# cursor keys
+bindsym $mod+Shift+Left         move left
+bindsym $mod+Shift+Down         move down
+bindsym $mod+Shift+Up           move up
+bindsym $mod+Shift+Right        move right
 
 # new_window 1pixel
 new_window none
@@ -78,26 +89,26 @@ bindsym $mod+o scratchpad show
 # start a terminal
 bindsym $mod+Return exec Xfce4-terminal
 
+# splitting mode
+bindsym $mod+g              split h
+bindsym $mod+v              split v
 
-# split in horizontal orientation
-bindsym $mod+h split h
-
-# split in vertical orientation
-bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen
-
+## Layout ##
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+#bindsym $mod+s             layout stacking
+bindsym $mod+Shift+t        layout tabbed
+bindsym $mod+e              layout toggle split
+bindsym $mod+f              fullscreen
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# floating mode
+floating_modifier           $mod
+bindsym $mod+space          focus mode_toggle
+
+# sticky window (newest version of i3)
+bindsym $mod+Shift+s sticky toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -108,20 +119,30 @@ bindsym $mod+t border toggle
 bindsym $mod+c move absolute position center
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1; layout tabbed
-bindsym $mod+2 workspace $ws2; layout tabbed
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4; layout tabbed
-bindsym $mod+5 workspace $ws5; layout tabbed
-bindsym $mod+6 workspace $ws6; layout tabbed
+bindsym $mod+comma      workspace prev
+bindsym $mod+period     workspace next
+bindsym $mod+1          workspace $ws1
+bindsym $mod+2          workspace $ws2
+bindsym $mod+3          workspace $ws3
+bindsym $mod+4          workspace $ws4
+bindsym $mod+5          workspace $ws5
+bindsym $mod+6          workspace $ws6
+bindsym $mod+7          workspace $ws7
+bindsym $mod+8          workspace $ws8
+bindsym $mod+9          workspace $ws9
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+comma  move container to workspace prev
+bindsym $mod+Shift+period move container to workspace next
+bindsym $mod+Shift+1      move container to workspace $ws1
+bindsym $mod+Shift+2      move container to workspace $ws2
+bindsym $mod+Shift+3      move container to workspace $ws3
+bindsym $mod+Shift+4      move container to workspace $ws4
+bindsym $mod+Shift+5      move container to workspace $ws5
+bindsym $mod+Shift+6      move container to workspace $ws6
+bindsym $mod+Shift+7      move container to workspace $ws7
+bindsym $mod+Shift+8      move container to workspace $ws8
+bindsym $mod+Shift+9      move container to workspace $ws9
 
 # reload/restart/exit
 bindsym $mod+Shift+c reload
@@ -132,7 +153,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+b border toggle
 
 # screenshot
-bindsym $mod+Shift+s exec "mkdir -p ~/Dropbox/Screenshots && scrot ~/Dropbox/Screenshots/'screenshot-%Y-%m-%d-%T'.png"
+bindsym $mod+Shift+Print exec "mkdir -p ~/Dropbox/Screenshots && scrot ~/Dropbox/Screenshots/'screenshot-%Y-%m-%d-%T'.png && notify-send -u low 'Screenshot saved'"
 
 # exit i3 (logs you out of your X session)
 bindsym Control+$Alt+Return exec i3-msg exit
@@ -207,15 +228,21 @@ for_window [class="urxvt"]                  border pixel 2
 
 assign [class="Xfce4-terminal"]         → $ws1
 assign [class="Transmission"]           → $ws1
+assign [class="feh"]                    → $ws1
+
+assign [class="GitKraken"]              → $ws2
+
 assign [class="Firefox"]                → $ws4
 assign [class="Google-chrome-unstable"] → $ws4
 assign [class="Subl"]                   → $ws5
-assign [class="GitKraken"]              → $ws2
+
 assign [class="^telegram$"]             → $ws6
-assign [class="Thunderbird"]                  → $ws6
+assign [class="tg-upd"]                 → $ws6
+assign [class="Thunderbird"]            → $ws6
 assign [class="Pidgin"]                 → $ws6
-assign [class="feh"]                    → $ws1
 assign [class="google-chrome-unstable (~/.config/chrome-slack-0/"]              → $ws6
+
+exec_always /usr/bin/gnome-settings-daemon
 
 #Shutdown,Reboot,Lock Screen
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
@@ -235,29 +262,38 @@ bindsym $mod+Pause mode "$mode_system"
 
 bar
 {
+    # status_command i3blocks
     status_command i3status -c ~/.config/i3/i3status.conf
-    separator_symbol "|"
-    mode dock
     modifier $mod
     tray_output HDMI1
     position top
     font pango:Hack 10
     colors {
-      background  #1b1b1b
-      statusline  #999999
-
-  #                     border  backgr  text
-      focused_workspace   #cccccc #444444 #cccccc
-      active_workspace    #cccccc #444444 #cccccc
-      inactive_workspace  #444444 #1b1b1b #cccccc
-      urgent_workspace    #cccccc #bf3939 #cccccc
+      # background  #212121
+      # statusline  #EEEEEE
+      # #                   border  backgr  text
+      # focused_workspace   #EEEEEE #EEEEEE #000000
+      # active_workspace    #EEEEEE #444444 #EEEEEE
+      # inactive_workspace  #444444 #1b1b1b #EEEEEE
+      # urgent_workspace    #EEEEEE #B71C1C #EEEEEE
+      background #002b36
+      statusline #839496
+      separator  #586e75
+      focused_workspace  #b58900 #b58900 #002b36
+      active_workspace   #586e75 #586e75 #002b36
+      inactive_workspace #073642 #002b36 #839496
+      urgent_workspace   #dc322f #dc322f #fdf6e3
     }
 }
 # class                   border  backgr. text    indicator
-client.focused            #cecece #cecece #2b2b2b #cecece
-client.focused_inactive   #5f676a #5f676a #cecece #5f676a
-client.unfocused          #222222 #222222 #888888 #222222
-client.urgent             #2f343a #900000 #ffffff #900000
+# client.focused            #cecece #cecece #000000 #cecece
+# client.focused_inactive   #5f676a #5f676a #cecece #5f676a
+# client.unfocused          #222222 #222222 #888888 #222222
+# client.urgent             #2f343a #900000 #ffffff #900000
+client.focused          #002b36 #586e75 #fdf6e3 #268bd2
+client.focused_inactive #002b36 #073642 #839496 #073642
+client.unfocused        #002b36 #073642 #839496 #073642
+client.urgent           #002b36 #dc322f #fdf6e3 #002b36
 
 # Hotkeys
 bindsym $mod+Control+t       exec xfce4-terminal
