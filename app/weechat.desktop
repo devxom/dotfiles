@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Weechat
+Comment=Console-based IRC client
+Exec=weechat
+Terminal=true
+Categories=Network;
+StartupNotify=true
