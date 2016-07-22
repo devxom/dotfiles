@@ -1,15 +1,35 @@
-background        no
-out_to_x      no
+background        false
+out_to_x          false
+own_window        false
 out_to_console    yes
-update_interval   0.5
+update_interval   1
 total_run_times   0
 short_units       yes
-uppercase         no
+uppercase         false
 use_spacer        no
+max_text_width    0
+short_units       true
+if_up_strictness = "address"
+override_utf8_locale = false
+use_spacer = "left"
 
 TEXT
 [
-{"full_text": "${if_running deadbeef-gtkui}${execi 3 deadbeef --nowplaying "%a - %t (%e/%l)"}${endif}", "color" : "\#00B386"},
-{"full_text" : "WiFi Down: ${downspeed wlp6s0} Up: ${upspeed wlp6s0}" , "color" : "\#00B386"},
-{"full_text": "[${time %d}.${time %m} ${time %a}, ${time %H:%M}]" , "color":"\#00B386"}
+  {
+      "full_text": " ${if_running deadbeef-gtkui}${execi 3 deadbeef --nowplaying "%a - %t (%e/%l)"}${endif} ",
+      "color": "\#b58900",
+      "background": "\#002b36"
+  },
+
+  # {
+  #     "full_text": "  up: ${upspeed wlp6s0} down: ${downspeed wlp6s0}",
+  #     "color": "\#ecf0f1",
+  #     "background": "\#1abc9c"
+  # },
+
+  {
+      "full_text": "  ${time  %a %d/%m/%y  %H:%M l}",
+      "color": "\#002b36",
+      "background": "\#b58900"
+  }
 ],

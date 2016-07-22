@@ -5,30 +5,47 @@
 set $mod   Mod4
 set $alt   Mod1
 
-# assign workspace variables
+#-------------------------------TAG-------------------------------
+set $tag1    "1 "
+set $tag2    "2 "
+set $tag3    "3 "
+set $tag4    "4 "
+set $tag5    "5 "
+set $tag6    "6 "
+set $tag7    "7 "
+set $tag8    "8 "
+set $tag9    "9 "
+#-------------------------------TAG-------------------------------
+#-------------------------------ASSIGN-------------------------------
+assign [class="Xfce4-terminal"]         → $tag1
+assign [class="Transmission"]           → $tag1
+assign [class="feh"]                    → $tag1
 
-set $ws1    "1 "
-set $ws2    "2 "
-set $ws3    "3 "
-set $ws4    "4 "
-set $ws5    "5 "
-set $ws6    "6 "
-set $ws7    "7 "
-set $ws8    "8 "
-set $ws9    "9 "
+assign [class="GitKraken"]              → $tag2
+assign [class="Hexchat"]                → $tag2
+assign [class="Nautilus"]               → $tag2
 
-# set $ws1  "1:term"
-# set $ws2  "2:git"
-# set $ws3  "3:other"
-# set $ws4  "4:web"
-# set $ws5  "5:code"
-# set $ws6  "6:mail"
+assign [class="Firefox"]                → $tag4
+assign [class="google-chrome-unstable"] → $tag4
+
+assign [class="Subl"]                   → $tag5
+
+assign [class="^telegram$"]             → $tag6
+assign [class="tg-upd"]                 → $tag6
+assign [class="Thunderbird"]            → $tag6
+assign [class="Pidgin"]                 → $tag6
+assign [class="google-chrome-unstable ($HOME/.config/chrome-slack-0/"]              → $tag6
+
+assign [class="Skype"]                  → $tag7
+#-------------------------------ASSIGN-------------------------------
+
+
 
 set $mod Mod4
 
 # font (xft uses pango, so, you can use pango instead xft, the result will be the same
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:Hack 10
+font pango:Inconsolata 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -48,7 +65,7 @@ popup_during_fullscreen ignore
 
 # start dmenu (a program launcher)
 bindsym $mod+Shift+d    exec rofi -show ssh
-bindsym $mod+d          exec rofi -show run -width 1600 -fg "#B0E670" -bg "#14161F" -hlfg "#14161F" -hlbg "#B0E670" -bc "#14161F" -location 0 -lines 19 -bw 0 -font "Hack 16" -padding 300 -separator-style none -opacity 80
+bindsym $mod+d          exec rofi -show run -width 600 -fg "#B0E670" -bg "#14161F" -hlfg "#14161F" -hlbg "#B0E670" -bc "#14161F" -location 0 -lines 6 -bw 0 -font "Inconsolata 16" -padding 10 -separator-style none -opacity 80
 #rofi -show run -font "Hack 12" -o 75
 bindsym $mod+Ctrl+d     exec rofi -show window -lines 10 -location 2 -xoffset 0 run -font "Hack 12" -o 75
 
@@ -79,15 +96,13 @@ bindsym $mod+Shift+Down         move down
 bindsym $mod+Shift+Up           move up
 bindsym $mod+Shift+Right        move right
 
-# new_window 1pixel
-new_window none
+#-----------------------------WindowRule--------------------------
+new_window pixel 1
+new_float  pixel 1
 hide_edge_borders both
 
 bindsym $mod+m move scratchpad
 bindsym $mod+o scratchpad show
-
-# start a terminal
-bindsym $mod+Return exec Xfce4-terminal
 
 # splitting mode
 bindsym $mod+g              split h
@@ -121,28 +136,28 @@ bindsym $mod+c move absolute position center
 # switch to workspace
 bindsym $mod+comma      workspace prev
 bindsym $mod+period     workspace next
-bindsym $mod+1          workspace $ws1
-bindsym $mod+2          workspace $ws2
-bindsym $mod+3          workspace $ws3
-bindsym $mod+4          workspace $ws4
-bindsym $mod+5          workspace $ws5
-bindsym $mod+6          workspace $ws6
-bindsym $mod+7          workspace $ws7
-bindsym $mod+8          workspace $ws8
-bindsym $mod+9          workspace $ws9
+bindsym $mod+1          workspace $tag1
+bindsym $mod+2          workspace $tag2
+bindsym $mod+3          workspace $tag3
+bindsym $mod+4          workspace $tag4
+bindsym $mod+5          workspace $tag5
+bindsym $mod+6          workspace $tag6
+bindsym $mod+7          workspace $tag7
+bindsym $mod+8          workspace $tag8
+bindsym $mod+9          workspace $tag9
 
 # move focused container to workspace
 bindsym $mod+Shift+comma  move container to workspace prev
 bindsym $mod+Shift+period move container to workspace next
-bindsym $mod+Shift+1      move container to workspace $ws1
-bindsym $mod+Shift+2      move container to workspace $ws2
-bindsym $mod+Shift+3      move container to workspace $ws3
-bindsym $mod+Shift+4      move container to workspace $ws4
-bindsym $mod+Shift+5      move container to workspace $ws5
-bindsym $mod+Shift+6      move container to workspace $ws6
-bindsym $mod+Shift+7      move container to workspace $ws7
-bindsym $mod+Shift+8      move container to workspace $ws8
-bindsym $mod+Shift+9      move container to workspace $ws9
+bindsym $mod+Shift+1      move container to workspace $tag1
+bindsym $mod+Shift+2      move container to workspace $tag2
+bindsym $mod+Shift+3      move container to workspace $tag3
+bindsym $mod+Shift+4      move container to workspace $tag4
+bindsym $mod+Shift+5      move container to workspace $tag5
+bindsym $mod+Shift+6      move container to workspace $tag6
+bindsym $mod+Shift+7      move container to workspace $tag7
+bindsym $mod+Shift+8      move container to workspace $tag8
+bindsym $mod+Shift+9      move container to workspace $tag9
 
 # reload/restart/exit
 bindsym $mod+Shift+c reload
@@ -153,7 +168,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+b border toggle
 
 # screenshot
-bindsym $mod+Shift+Print exec "mkdir -p ~/Dropbox/Screenshots && scrot ~/Dropbox/Screenshots/'screenshot-%Y-%m-%d-%T'.png && notify-send -u low 'Screenshot saved'"
+bindsym $mod+Shift+Print exec "mkdir -p $HOME/Dropbox/Screenshots && scrot $HOME/Dropbox/Screenshots/'screenshot-%Y-%m-%d-%T'.png && notify-send -u low 'Screenshot saved'"
 
 # exit i3 (logs you out of your X session)
 bindsym Control+$Alt+Return exec i3-msg exit
@@ -164,7 +179,7 @@ bindsym Control+$Alt+BackSpace exec systemctl reboot
 # lock screen
 # bindsym Control+$Alt+l exec mate-screensaver-command -
 # bindsym Control+Mod1+l exec i3-msg workspace 1 && i3lock -c 111111 -d
-# bindsym Control+$Alt+s exec i3-msg workspace $ws1 && sleep 3 && xset dpms force standby
+# bindsym Control+$Alt+s exec i3-msg workspace $tag1 && sleep 3 && xset dpms force standby
 
 # resize window (you can also use the mouse for that)
 mode "" {
@@ -192,21 +207,16 @@ bindsym $mod+Control+Right workspace next
 set $left  VGA1
 set $right HDMI1
 
-# Alsa Audio controls
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 -q set Master 1%-
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 0 -q set Master 1%+
-
 # Automatically putting clients on specific workspaces
-workspace $ws1 output $left  # Term
-workspace $ws2 output $left  # git
-workspace $ws3 output $left  # gui shit - skype
-workspace $ws4 output $right # web
-workspace $ws5 output $right # code
-workspace $ws6 output $right # mail
+workspace $tag1 output $left  # Term
+workspace $tag2 output $left  # git
+workspace $tag3 output $left  # gui shit - skype
+workspace $tag4 output $right # web
+workspace $tag5 output $right # code
+workspace $tag6 output $right # mail
 
 #Float
 #    xprop | grep -i 'class'         #
-for_window [class="Nitrogen"]               floating enable
 for_window [class="Lxappearance"]           floating enable
 for_window [class="File-roller" ]           floating enable
 for_window [class="Skype" ]                 floating enable
@@ -226,24 +236,6 @@ for_window [window_type="menu"]             floating enable
 # Decorate
 for_window [class="urxvt"]                  border pixel 2
 
-assign [class="Xfce4-terminal"]         → $ws1
-assign [class="Transmission"]           → $ws1
-assign [class="feh"]                    → $ws1
-
-assign [class="GitKraken"]              → $ws2
-
-assign [class="Firefox"]                → $ws4
-assign [class="Google-chrome-unstable"] → $ws4
-assign [class="Subl"]                   → $ws5
-
-assign [class="^telegram$"]             → $ws6
-assign [class="tg-upd"]                 → $ws6
-assign [class="Thunderbird"]            → $ws6
-assign [class="Pidgin"]                 → $ws6
-assign [class="google-chrome-unstable (~/.config/chrome-slack-0/"]              → $ws6
-
-exec_always /usr/bin/gnome-settings-daemon
-
 #Shutdown,Reboot,Lock Screen
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
@@ -258,24 +250,19 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
 bindsym $mod+Pause mode "$mode_system"
 
 bar
 {
     # status_command i3blocks
-    status_command i3status -c ~/.config/i3/i3status.conf
+    status_command $HOME/.config/i3/conkyi3.sh
+    # status_command i3status -c $HOME/.config/i3/i3status.conf
     modifier $mod
     tray_output HDMI1
     position top
     font pango:Hack 10
     colors {
-      # background  #212121
-      # statusline  #EEEEEE
-      # #                   border  backgr  text
-      # focused_workspace   #EEEEEE #EEEEEE #000000
-      # active_workspace    #EEEEEE #444444 #EEEEEE
-      # inactive_workspace  #444444 #1b1b1b #EEEEEE
-      # urgent_workspace    #EEEEEE #B71C1C #EEEEEE
       background #002b36
       statusline #839496
       separator  #586e75
@@ -285,15 +272,13 @@ bar
       urgent_workspace   #dc322f #dc322f #fdf6e3
     }
 }
-# class                   border  backgr. text    indicator
-# client.focused            #cecece #cecece #000000 #cecece
-# client.focused_inactive   #5f676a #5f676a #cecece #5f676a
-# client.unfocused          #222222 #222222 #888888 #222222
-# client.urgent             #2f343a #900000 #ffffff #900000
 client.focused          #002b36 #586e75 #fdf6e3 #268bd2
 client.focused_inactive #002b36 #073642 #839496 #073642
 client.unfocused        #002b36 #073642 #839496 #073642
 client.urgent           #002b36 #dc322f #fdf6e3 #002b36
+
+exec_always /usr/bin/gnome-settings-daemon
+exec --no-startup-id $HOME/.config/i3/autostart
 
 # Hotkeys
 bindsym $mod+Control+t       exec xfce4-terminal
@@ -301,8 +286,11 @@ bindsym $mod+Control+e       exec subl
 bindsym $mod+Shift+i         exec st -e alsamixer
 bindsym XF86PowerOff         exec systemctl poweroff
 bindsym $alt+b               exec "xsel -op | xsel -ib"
-
-exec --no-startup-id ~/.config/i3/autostart
+# start a terminal
+bindsym $mod+Return exec Xfce4-terminal
+# Alsa Audio controls
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 -q set Master 1%-
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 0 -q set Master 1%+
 
 ## bindings for ThinkPad keyboard
 # bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 -20%; exec /usr/bin/pactl play-sample volume_blip; exec /usr/bin/killall -USR1 i3status
@@ -311,10 +299,11 @@ exec --no-startup-id ~/.config/i3/autostart
 # bindsym XF86Launch1 exec /usr/bin/pactl play-sample that_was_easy
 # bindsym XF86MonBrightnessUp exec /usr/bin/xbacklight -inc 10
 # bindsym XF86MonBrightnessDown exec /usr/bin/xbacklight -dec 5
+#
 
 ## bindings for MS Natural Ergonomic Keyboard 4000
-# bindsym XF86HomePage exec /usr/bin/xdg-open "http://www.github.com"; workspace $ws4
-# bindsym XF86Search exec /usr/bin/xdg-open "http://www.google.com"; workspace $ws4
+# bindsym XF86HomePage exec /usr/bin/xdg-open "http://www.github.com"; workspace $tag4
+# bindsym XF86Search exec /usr/bin/xdg-open "http://www.google.com"; workspace $tag4
 # bindsym XF86Mail exec /usr/bin/xdg-email; workspace 5
 # bindsym XF86Launch5
 # bindsym XF86Launch6

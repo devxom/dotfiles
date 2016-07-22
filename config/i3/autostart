@@ -33,8 +33,11 @@ feh --bg-fill ~/Pictures/Wallpaper.png
 ## Disable beeps
 xset -b &
 
-## Keybord layout setting
-setxkbmap "us,ru" -option "grp:alt_shift_toggle,grp_led:scroll" &
+## Keybord layout setting cmd+space rwin
+# setxkbmap -model pc105 -layout 'us(dvorak-intl),us(alt-intl)' -option -option grp:lctrl_lshift_toggle -option compose:rwin
+# setxkbmap -model microsoft4000 -layout 'us(dvorak-intl),us(alt-intl)' -option -option grp:lctrl_lshift_toggle -option compose:rwin
+# setxkbmap "us,ru" -option "grp:alt_shift_toggle,grp_led:scroll" &
+setxkbmap -layout "us,ru" -option "grp:alt_shift_toggle,grp_led:scroll" &
 ## C-A-Backspace to kill X
 #setxkbmap -option terminate:ctrl_alt_bksp &
 
@@ -53,20 +56,19 @@ xgamma -gamma 1.1 &
 ## Composite manager
 #xcompmgr -cf -r 0 -D 6 &
 # compton -CGb --vsync opengl
-# compton -cCb --backend glx --vsync opengl --xinerama-shadow-crop
 compton -c -r4 -l-6 -t-4 -z -b -G -C -f -D30 -I0.45 -O0.45 --paint-on-overlay --unredir-if-possible --backend glx --glx-no-stencil --glx-no-rebind-pixmap
 
 ## OSD
 LC_ALL=C dunst -config ~/.dunstrc &
 
-# $TERMINAL -name mail &
-## IM and mail
-i3-msg workspace $ws6
-i3-msg split h
-/usr/bin/thunderbird &
-/usr/bin/pidgin &
-sleep 5
-i3-msg "split v; layout stacking"
+# # $TERMINAL -name mail &
+# ## IM and mail
+# i3-msg workspace $ws6
+# i3-msg split h
+# /usr/bin/thunderbird &
+# /usr/bin/pidgin &
+# sleep 5
+# i3-msg "split v; layout stacking"
 
 ## Refresh
 xrefresh &
@@ -84,7 +86,7 @@ LC_ALL=C dropbox start &>/dev/null &
 # LC_ALL=C parcellite &>/dev/null &
 
 ## Telegram
-#telegram &
+tg-upd &
 
 ## Update dmenu cache
 dmenu_path >/dev/null&
@@ -92,5 +94,4 @@ dmenu_path >/dev/null&
 ## OSD
 #megasync
 
-## Good work :-)
 exit 0
