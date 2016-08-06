@@ -1,7 +1,7 @@
 #!/usr/bin/expect
 spawn sudo mount -t davfs https://webdav.yandex.ru /media/yandex/
 expect "Username:"
-send "devxom@yandex.ru\r"
+send "email"
 expect "Password:"
 send "password\r"
 expect eof
