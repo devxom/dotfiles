@@ -1,1 +1,0 @@
-- [Paper gtk+](http://snwh.org/paper/) [github.com](https://github.com/snwh/paper-gtk-theme)
