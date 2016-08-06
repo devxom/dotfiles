@@ -63,7 +63,7 @@
 
     //-------- Gist Configuration --------
     // OAuth Github Token
-    "gist.oauth_token": "36c273bd25f7414881019393a0eaf1d772fbf3bd",
+    "gist.oauth_token": "token",
 
     "json.schemas": [{
         "fileMatch": [
