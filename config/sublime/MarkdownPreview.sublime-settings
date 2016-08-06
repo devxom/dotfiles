@@ -1,0 +1,68 @@
+/*
+    Markdown Preview default settings
+*/
+{
+    "parser": "github-flavored-markdown",
+    "build_action": "browser",
+    "enable_mathjax": true,
+    "enable_uml": true,
+    "enable_highlight": true,
+    "enable_pygments": true,
+
+    /*
+        Default mode for the github Markdown parser : markdown (documents) or gfm (comments)
+        see http://developer.github.com/v3/markdown/#render-an-arbitrary-markdown-document
+    */
+    "github_mode": "markdown",
+    "github_inject_header_ids": true,
+
+    /*
+        Uses an OAuth token when parsing markdown with GitHub API. To create one for Markdown Preview, see https://help.github.com/articles/creating-an-oauth-token-for-command-line-use.
+        Warn: this secret *must not be shared* with anyone and at least you should create it with minimal scopes for security reasons.
+    */
+    // "github_oauth_token": "secret",
+
+    /*
+        Sets the default css file to embed in the HTML
+
+        default - Use the builtin CSS or github CSS, depending on parser config (markdown.css or github.css)
+        other - Set an absolute path or url to any css file
+
+        Should be an array, but will take a single string to support legacy convention.
+    */
+    "enable_autoreload": true,
+    "path_tempfile": "./build",
+    "image_path_conversion": "base64",
+
+    /*
+        Sets how file paths are handled.
+        Setting is a string value: (absolute | relative | none)
+            absolute: converts relative local paths to absolute
+            relative: converts relative local paths to a path relative to the
+                        HTML output
+            none: does nothing
+    */
+    "file_path_conversions": "absolute",
+
+    /*
+        Sets how multimarkdown critic marks are handled.
+        Setting is a string value: (accept | reject | none)
+            accept: Accepts the proposed inserts and deletions (comments etc. are discarded)
+            reject: Rejects the proposed inserts and deletions (comments etc. are discarded)
+            none: does nothing
+
+        Critic marks only affects "github" and "markdown" (Python Markdown).
+    */
+    "strip_critic_marks": "none",
+
+    /*
+        Strips the YAML front matter header and converts title to a heading
+    */
+    "strip_yaml_front_matter": false,
+
+    /* do we show the panel when build with CMD+B */
+    "show_panel_on_build": true,
+
+    /* do we include the CSS when outputting HTML into a new sublime view ? */
+    "embed_css_for_sublime_output": true
+}

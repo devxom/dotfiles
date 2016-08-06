@@ -323,3 +323,5 @@ cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 
 echo "Færdig. Genstart efter dette."
 
+dnf install http://rpm.danielrenninghoff.com/infinality/fedora/$(rpm -E %fedora)/noarch/infinality-ultimate-repo-$(rpm -E %fedora)-1.noarch.rpm
+dnf install cairo-infinality-ultimate fontconfig-infinality-ultimate freetype-infinality-ultimate ibfonts-meta-base ibfonts-meta-extended-lt ibfonts-meta-extended java-1.8.0-openjdk-infinality-ultimate-headless

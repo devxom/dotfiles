@@ -1,73 +1,61 @@
-# i3 config file
-# devxom upd 29/06/2016
+## i3wm configuration file
+# Modified: 06.08.2016 - devxom : https://github.com/devxom
 
-# # Variables
+# Variables
 set $mod   Mod4
 set $alt   Mod1
+set $nsi   $nsi
+set $r     --release
 
-#-------------------------------TAG-------------------------------
-set $tag1    "1 "
-set $tag2    "2 "
-set $tag3    "3 "
-set $tag4    "4 "
-set $tag5    "5 "
-set $tag6    "6 "
-set $tag7    "7 "
-set $tag8    "8 "
-set $tag9    "9 "
-#-------------------------------TAG-------------------------------
-#-------------------------------ASSIGN-------------------------------
-assign [class="Xfce4-terminal"]         → $tag1
-assign [class="Transmission"]           → $tag1
-assign [class="feh"]                    → $tag1
+# Tag
+set $tag1    "1:term"
+set $tag2    "2:dvcs"
+set $tag3    "3:othr"
+set $tag4    "4:brws"
+set $tag5    "5:code"
+set $tag6    "6:mail"
+set $tag7    "7:skyp"
+set $tag8    "8"
+set $tag9    "9"
 
-assign [class="GitKraken"]              → $tag2
-assign [class="Hexchat"]                → $tag2
-assign [class="Nautilus"]               → $tag2
+# Variables for colors
+set $bg-color            #FDF6E3
+set $text-color          #B58900
+set $inactive-bg-color   #FDF6E3
+set $inactive-text-color #586E75
+set $active-bg-color     #FDF6E3
+set $active-text-color   #586E75
+set $urgent-bg-color     #DC322F
+set $urgent-text-color   #FAFAFA
+set $indicator           #268BD2
+set $text-color-rofi     #FAFAFA
 
-assign [class="Firefox"]                → $tag4
-assign [class="google-chrome-unstable"] → $tag4
+# Font
+font pango:Cantarell, FontAwesome 10
 
-assign [class="Subl"]                   → $tag5
-
-assign [class="^telegram$"]             → $tag6
-assign [class="tg-upd"]                 → $tag6
-assign [class="Thunderbird"]            → $tag6
-assign [class="Pidgin"]                 → $tag6
-assign [class="google-chrome-unstable ($HOME/.config/chrome-slack-0/"]              → $tag6
-
-assign [class="Skype"]                  → $tag7
-#-------------------------------ASSIGN-------------------------------
-
-
-
-set $mod Mod4
-
-# font (xft uses pango, so, you can use pango instead xft, the result will be the same
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:Inconsolata 10
+# bindsym $mod+u exec i3-input -F 'workspace "%s"' -P 'Workspace name: '
+# focus last urgent window
+bindsym $mod+u          [urgent=latest] focus
 
 # Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+floating_modifier   $mod
 
 # hide borders adjacent to the screen edge
-hide_edge_borders both
+hide_edge_borders   both
 
 # No mouse cursor "stealing" across workspaces
 focus_follows_mouse no
 mouse_warping       none
 
 # Some apps are "dumb"
-popup_during_fullscreen leave_fullscreen
-
-workspace_layout tabbed
-popup_during_fullscreen ignore
+popup_during_fullscreen  smart
+workspace_layout         tabbed
+popup_during_fullscreen  ignore
 
 # start dmenu (a program launcher)
+bindsym $mod+d          exec rofi -show run -location 2 -lines 6 -opacity "95" -font "Inconsolata 16"
+bindsym $mod+Ctrl+d     exec rofi -show window -lines 10 -location 0 -xoffset 0 run -font "Inconsolata 16" -o 75
 bindsym $mod+Shift+d    exec rofi -show ssh
-bindsym $mod+d          exec rofi -show run -width 600 -fg "#B0E670" -bg "#14161F" -hlfg "#14161F" -hlbg "#B0E670" -bc "#14161F" -location 0 -lines 6 -bw 0 -font "Inconsolata 16" -padding 10 -separator-style none -opacity 80
-#rofi -show run -font "Hack 12" -o 75
-bindsym $mod+Ctrl+d     exec rofi -show window -lines 10 -location 2 -xoffset 0 run -font "Hack 12" -o 75
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -96,7 +84,7 @@ bindsym $mod+Shift+Down         move down
 bindsym $mod+Shift+Up           move up
 bindsym $mod+Shift+Right        move right
 
-#-----------------------------WindowRule--------------------------
+# WindowRule
 new_window pixel 1
 new_float  pixel 1
 hide_edge_borders both
@@ -162,13 +150,17 @@ bindsym $mod+Shift+9      move container to workspace $tag9
 # reload/restart/exit
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec gnome-characters
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Border togle
 bindsym $mod+b border toggle
 
 # screenshot
-bindsym $mod+Shift+Print exec "mkdir -p $HOME/Dropbox/Screenshots && scrot $HOME/Dropbox/Screenshots/'screenshot-%Y-%m-%d-%T'.png && notify-send -u low 'Screenshot saved'"
+bindsym $mod+Shift+Print exec "scrot $HOME/Dropbox/Screenshots/'screenshot-%Y-%m-%d-%T'.png && notify-send -u low 'Screenshot saved'"
+bindsym Print      exec xfce4-screenshooter
+bindsym $mod+Print exec xfce4-screenshooter -r -i
+bindsym $mod+Control+Print exec xfce4-screenshooter -w -i
 
 # exit i3 (logs you out of your X session)
 bindsym Control+$Alt+Return exec i3-msg exit
@@ -177,7 +169,6 @@ bindsym Control+$Alt+Delete exec systemctl poweroff
 # reboot computer
 bindsym Control+$Alt+BackSpace exec systemctl reboot
 # lock screen
-# bindsym Control+$Alt+l exec mate-screensaver-command -
 # bindsym Control+Mod1+l exec i3-msg workspace 1 && i3lock -c 111111 -d
 # bindsym Control+$Alt+s exec i3-msg workspace $tag1 && sleep 3 && xset dpms force standby
 
@@ -204,6 +195,7 @@ bindsym $mod + r mode ""
 bindsym $mod+Control+Left  workspace prev
 bindsym $mod+Control+Right workspace next
 
+# Dislpays
 set $left  VGA1
 set $right HDMI1
 
@@ -211,9 +203,39 @@ set $right HDMI1
 workspace $tag1 output $left  # Term
 workspace $tag2 output $left  # git
 workspace $tag3 output $left  # gui shit - skype
-workspace $tag4 output $right # web
+workspace $tag4 output $left  # web
 workspace $tag5 output $right # code
 workspace $tag6 output $right # mail
+workspace $tag7 output $right
+workspace $tag8 output $right
+
+
+#-------------------------------ASSIGN-------------------------------
+assign [class="Xfce4-terminal"]         → $tag1
+assign [class="feh"]                    → $tag1
+
+assign [class="Transmission"]           → $tag2
+assign [class="GitKraken"]              → $tag2
+assign [class="Nautilus"]               → $tag2
+assign [class="Hexchat"]                → $tag2
+
+assign [class="Firefox"]                → $tag4
+assign [class="Google-chrome-unstable"] → $tag4
+assign [class="Opera-developer"]        → $tag4
+
+assign [class="Subl"]                   → $tag5
+assign [class="Code"]                   → $tag5
+assign [class="Nvim"]                   → $tag5
+
+assign [class="Thunderbird"]            → $tag6
+assign [class="Pidgin"]                 → $tag6
+
+assign [class="Skype"]                  → $tag7
+assign [class="^telegram$"]             → $tag7
+assign [class="tg-upd"]                 → $tag7
+
+assign [class="Upwork"]                 → $tag8
+#-------------------------------ASSIGN-------------------------------
 
 #Float
 #    xprop | grep -i 'class'         #
@@ -239,12 +261,12 @@ for_window [class="urxvt"]                  border pixel 2
 #Shutdown,Reboot,Lock Screen
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l       exec --no-startup-id i3exit lock, mode "default"
-    bindsym e       exec --no-startup-id i3exit logout, mode "default"
-    bindsym s       exec --no-startup-id i3exit suspend, mode "default"
-    bindsym h       exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r       exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff
+    bindsym l       exec $nsi i3exit lock, mode "default"
+    bindsym e       exec $nsi i3exit logout, mode "default"
+    bindsym s       exec $nsi i3exit suspend, mode "default"
+    bindsym h       exec $nsi i3exit hibernate, mode "default"
+    bindsym r       exec $nsi i3exit reboot, mode "default"
+    bindsym Shift+s exec $nsi systemctl poweroff
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -253,44 +275,102 @@ mode "$mode_system" {
 
 bindsym $mod+Pause mode "$mode_system"
 
+
+#change keyboard layout
+# set $keyboardMode "keyboard e=ee, u=us"
+# mode $keyboardMode {
+#     bindsym e exec "setxkbmap ee", mode "default"
+#     bindsym u exec "setxkbmap us", mode "default"
+#     # back to normal: Enter or Escape
+#     bindsym Return mode "default"
+#     bindsym Escape mode "default"
+# }
+
+# bindsym $mod+Shift+i mode $keyboardMode
 bar
 {
-    # status_command i3blocks
-    status_command $HOME/.config/i3/conkyi3.sh
-    # status_command i3status -c $HOME/.config/i3/i3status.conf
+    output VGA1
+    # status_command i3blocks -c $HOME/.config/i3blocks/config.i3
+    status_command $HOME/.config/i3/conkyi3-2.sh
     modifier $mod
-    tray_output HDMI1
     position top
-    font pango:Hack 10
+    font pango:Source Code Pro 10
     colors {
-      background #002b36
-      statusline #839496
-      separator  #586e75
-      focused_workspace  #b58900 #b58900 #002b36
-      active_workspace   #586e75 #586e75 #002b36
-      inactive_workspace #073642 #002b36 #839496
-      urgent_workspace   #dc322f #dc322f #fdf6e3
+        background $bg-color
+        statusline #586E75
+        separator  #586E75
+        focused_workspace  #B58900 #EEE8D5 #B58900
+        active_workspace   #586E75 #EEE8D5 #586E75
+        inactive_workspace #FDF6E3 #EEE8D5 #586E75
+        urgent_workspace   #DC322F #DC322F #FAFAFA
     }
 }
-client.focused          #002b36 #586e75 #fdf6e3 #268bd2
-client.focused_inactive #002b36 #073642 #839496 #073642
-client.unfocused        #002b36 #073642 #839496 #073642
-client.urgent           #002b36 #dc322f #fdf6e3 #002b36
 
-exec_always /usr/bin/gnome-settings-daemon
-exec --no-startup-id $HOME/.config/i3/autostart
+bar
+{
+    output HDMI1
+    status_command $HOME/.config/i3/conkyi3.sh
+    modifier $mod
+    tray_output VGA1
+    position top
+    font pango:Source Code Pro 10
+    colors {
+        background $bg-color
+        statusline #586E75
+        separator  #586E75
+        #                  border                 background           text
+        focused_workspace  $text-color            $bg-color            $text-color
+        active_workspace   $inactive-text-color   $active-bg-color     $active-text-color
+        inactive_workspace $inactive-bg-color     $inactive-bg-color   $inactive-text-color
+        urgent_workspace   $urgent-bg-color       $urgent-bg-color     $urgent-text-color
+    }
+}
+
+
+
+# window colors
+#                       border              background          text                  indicator
+client.focused          $text-color         $bg-color           $text-color           $indicator
+client.unfocused        $inactive-bg-color  $inactive-bg-color  $inactive-text-color  $indicator
+client.focused_inactive $inactive-bg-color  $inactive-bg-color  $inactive-text-color  $indicator
+client.urgent           $urgent-bg-color    $urgent-bg-color    $text-color           $indicator
+
+# colors {
+#   background #EEE8D5
+#   statusline #586E75
+#   separator  #586E75
+#   focused_workspace  #B58900 #EEE8D5 #B58900
+#   active_workspace   #586E75 #EEE8D5 #586E75
+#   inactive_workspace #FDF6E3 #EEE8D5 #586E75
+#   urgent_workspace   #DC322F #DC322F #FAFAFA
+# }
+#                        border  backgr. text    indicator
+# client.focused          #B58900 #FDF6E3 #B58900 #268bd2
+# client.focused_inactive #FDF6E3 #FDF6E3 #586E75 #FDF6E3
+# client.unfocused        #FDF6E3 #FDF6E3 #586E75 #FDF6E3
+# client.urgent           #DC322F #DC322F #FAFAFA #268BD2
+
+# exec_always /usr/bin/gnome-settings-daemon
+exec $nsi $HOME/.config/i3/autostart
 
 # Hotkeys
 bindsym $mod+Control+t       exec xfce4-terminal
 bindsym $mod+Control+e       exec subl
-bindsym $mod+Shift+i         exec st -e alsamixer
+bindsym $mod+Shift+i         exec urxvt -e alsamixer
 bindsym XF86PowerOff         exec systemctl poweroff
-bindsym $alt+b               exec "xsel -op | xsel -ib"
 # start a terminal
-bindsym $mod+Return exec Xfce4-terminal
-# Alsa Audio controls
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 -q set Master 1%-
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 0 -q set Master 1%+
+# bindsym $mod+Return exec xfce4-terminal
+bindsym    $mod+Return            exec $nsi urxvt
+# Alsa Audio controls11
+bindsym XF86AudioLowerVolume      exec $nsi amixer -c 0 -q set Master 1%-; exec notify-send 'alert';
+bindsym XF86AudioRaiseVolume      exec $nsi amixer -c 0 -q set Master 1%+
+
+bindsym    $mod+Shift+Return      exec $nsi urxvt -e tmux
+bindsym    $mod+$alt+f            exec $nsi urxvt -title ranger -e ranger
+# bindsym    $mod+$alt+f            exec $nsi urxvt -title "ranger [#]" -e sudo ranger
+# bindsym    $mod+Control+u         exec $nsi "urxvt -title updating -e yaourt -Syyua --noconfirm && i3-msg restart"
+# bindsym    $mod+n                 exec $nsi urxvt -title music -e ncmpcpp
+# bindsym $r $mod+t                 exec $nsi urxvt -title Mail -e mutt
 
 ## bindings for ThinkPad keyboard
 # bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 -20%; exec /usr/bin/pactl play-sample volume_blip; exec /usr/bin/killall -USR1 i3status

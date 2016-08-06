@@ -28,7 +28,7 @@ xrdb -merge ~/.Xresources &
 
 ## Desktop background or picture
 #xsetroot -solid '#101010' &
-feh --bg-fill ~/Pictures/Wallpaper.png
+feh --bg-fill ~/Pictures/Rise.png
 
 ## Disable beeps
 xset -b &
@@ -56,10 +56,13 @@ xgamma -gamma 1.1 &
 ## Composite manager
 #xcompmgr -cf -r 0 -D 6 &
 # compton -CGb --vsync opengl
-compton -c -r4 -l-6 -t-4 -z -b -G -C -f -D30 -I0.45 -O0.45 --paint-on-overlay --unredir-if-possible --backend glx --glx-no-stencil --glx-no-rebind-pixmap
+compton -b &
+
 
 ## OSD
-LC_ALL=C dunst -config ~/.dunstrc &
+LC_ALL=C dunst &
+## Run menu
+LC_ALL=C rofi &
 
 # # $TERMINAL -name mail &
 # ## IM and mail
@@ -73,25 +76,18 @@ LC_ALL=C dunst -config ~/.dunstrc &
 ## Refresh
 xrefresh &
 
-## Special keys
-# sleep 5s && xmodmap /home/lzap/.Xmodmap &
-
 ## Start taskbar utils
-LC_ALL=C nm-applet &>/dev/null &
+LC_ALL=C parcellite &>/dev/null &
 LC_ALL=C zeal &>/dev/null &
 LC_ALL=C rescuetime &>/dev/null &
-LC_ALL=C rofi &
 LC_ALL=C dropbox start &>/dev/null &
-# LC_ALL=C workrave &>/dev/null &
-# LC_ALL=C parcellite &>/dev/null &
+sleep 5
+LC_ALL=C nm-applet &>/dev/null &
 
 ## Telegram
 tg-upd &
 
 ## Update dmenu cache
 dmenu_path >/dev/null&
-
-## OSD
-#megasync
 
 exit 0

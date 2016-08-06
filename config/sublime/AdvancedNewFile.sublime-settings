@@ -1,0 +1,13 @@
+{
+    "use_cursor_text": true,
+    "show_files": true,
+    "show_path": true,
+    "default_root": "project_folder",
+    "default_path": "~/git-repos/",
+    "alias_path": "~/git-repos/",
+    "auto_refresh_sidebar": true,
+    "completion_type": "nix",
+    "use_folder_name": false,
+    "relative_from_current": true,
+    "default_extension": ".md",
+}

@@ -1,3 +1,4 @@
+#!/bin/bash
 background        false
 out_to_x          false
 own_window        false
@@ -11,25 +12,36 @@ max_text_width    0
 short_units       true
 if_up_strictness = "address"
 override_utf8_locale = false
-use_spacer = "left"
+# Use Xft?
+use_xft yes
+
+# Xft font when Xft is enabled
+xftfont snap:Bold:size=10
 
 TEXT
 [
-  {
-      "full_text": " ${if_running deadbeef-gtkui}${execi 3 deadbeef --nowplaying "%a - %t (%e/%l)"}${endif} ",
-      "color": "\#b58900",
-      "background": "\#002b36"
-  },
 
-  # {
-  #     "full_text": "  up: ${upspeed wlp6s0} down: ${downspeed wlp6s0}",
-  #     "color": "\#ecf0f1",
-  #     "background": "\#1abc9c"
+# 🔋
+  # }
+  #   { "full_text" : "${exec setxkbmap -v 7 | grep layout | awk '{print $2}'}",
+  #     "color": "\#586E75",
+  #     "separator": false,
+  #     "separator_block_width": 3
   # },
 
   {
-      "full_text": "  ${time  %a %d/%m/%y  %H:%M l}",
-      "color": "\#002b36",
-      "background": "\#b58900"
+      "full_text": "   ${time  %a %d/%m }",
+      "color": "\#586E75",
+      "separator": false,
+      "separator_block_width": 3
+  },
+
+  {
+      "full_text": " ${time  %H:%M:%S }",
+      "color": "\#FDF6E3",
+      "background": "\#6C71C4",
+      "separator": false,
+      "separator_block_width": 3
   }
+
 ],

@@ -1,0 +1,61 @@
+background        false
+out_to_x          false
+own_window        false
+out_to_console    yes
+update_interval   1
+total_run_times   0
+short_units       yes
+uppercase         false
+use_spacer        no
+max_text_width    0
+short_units       true
+if_up_strictness = "address"
+override_utf8_locale = false
+use_xft yes
+
+# Xft font when Xft is enabled
+xftfont snap:Bold:size=10
+
+TEXT
+[
+    {
+      "full_text": "  ${execi 3600 wget -q -O - "http://www.google.com/finance/converter?a=1&from=USD&to=RUB"|grep "<div id=currency_converter_result>"|sed 's/<[^>]*>//g'} ",
+      "color": "\#000000"
+      # "background": "\#268bd2"
+    },
+
+    {
+        "full_text" :" T: ${exec vnstat -d | grep `date +%x`|awk '{print $2 $3}'} ${exec vnstat -d | grep `date +%x`|awk '{print $5 $6}} /",
+        "color" : "\#000000",
+        "separator": false,
+        "separator_block_width": 3
+    },
+
+    {
+        "full_text" :" M: ${exec vnstat -m -i wlp6s0|grep `date | cut -d' ' -f2`|awk '{print $3 $4}'} ",
+        "color" : "\#000000"
+    },
+
+    {
+        "full_text": " home (${fs_free /home})",
+        # / ${fs_size /home}
+        "color": "\#000000",
+        # "background": "\#073642",
+        "separator": false,
+        "separator_block_width": 3
+    }
+${if_running ncmpcpp}
+    ,
+
+    {
+        "full_text": "    ${mpd_smart} ($mpd_elapsed / $mpd_length) ",
+        "color": "\#002b36",
+        "background": "\#073642",
+        "separator": false,
+        "separator_block_width": 3
+    }
+${endif}
+],
+
+
+

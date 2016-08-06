@@ -1,16 +1,43 @@
+[alias]
+    a = add
+    ca = commit -a
+    c = commit
+    co = checkout
+    d = diff
+    rh = reset --hard
+    s = status
+    t = tag
+    last = "!git log -7 HEAD --abbrev-commit --date=short --pretty=format:'%h%x00%cd%x00%s%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"\\033[31m%s\\033[m \\033[32m%s\\033[m  %-.40s \\033[30;1m%s\\033[m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5 }';"
+    undo = checkout --
+    sum  = git-summary
+    l  = log --graph --pretty=format:'%C(Yellow)%h %C(Cyan)%ad %C(White)%s%C(Green)%d %C(Blue)[%an]' --date=short
+    lg = "!f () { git log --graph --color=always --abbrev-commit --date=relative --pretty=format:'%x00%h%x00%s%x00%cd%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"%s\\033[33m%s\\033[0m %-40s \\033[32m%14s\\033[0m \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5, $6 }'; }; f"
+    lo  = "!f () { git log --abbrev-commit --date=short --pretty=format:'%h%x00%cd%x00%s%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"\\033[38m%s\\033[0m \\033[32m%s\\033[0m  %-80s \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5 }'; }; f"
+
+[credential]
+	helper = /usr/share/doc/git-core-doc/contrib/credential/gnome-keyring
+
+[color]
+    ui = auto
+
+[push]
+    default = tracking
+
+[diff]
+    renames = copies
+    mnemonicprefix = true
+
 [user]
     email = devxom@gmail.com
     name = Ilya Reshetnikov
-[credential]
-    helper = cache --timeout=3600000
+
 [core]
     editor = subl -w
-    excludesfile = /home/operator/.gitignore_global
-[color]
-    ui = auto
+    excludesfile = ~/.gitignore
+
 [pager]
-    diff = diff-so-fancy | less --tabs=4 -RFX
-    show = diff-so-fancy | less --tabs=4 -RFX
+    diff = LESS=RS less -c
+
 [url "git@github.com:devxom/"]
     insteadOf = git+ssh://github.com/me/
     insteadOf = git://github.com/me/
@@ -19,29 +46,40 @@
     insteadOf = https://github.com/me/
     insteadOf = git@github.com:me/
     insteadOf = git@github.com/me/
+
 [url "git@github.com:"]
     insteadOf = git+ssh://github.com/
     insteadOf = git://github.com/
     insteadOf = ssh://github.com/
     insteadOf = ssh://git@github.com/
     insteadOf = https://github.com/
+
 [http]
-    cookiefile = /home/operator/.gitcookies
-[alias]
-    last = "!git log -7 HEAD --abbrev-commit --date=short --pretty=format:'%h%x00%cd%x00%s%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"\\033[31m%s\\033[m \\033[32m%s\\033[m  %-.40s \\033[30;1m%s\\033[m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5 }';"
-    co   = checkout
-    ci   = commit
-    st   = status
-    pu   = push
-    pl   = pull
-    undo = checkout --
-    log1 = log --
-    sum  = git-summary
-    effort  = git-summary
-    styoyo = git-awesome-status
-    l  = log --graph --pretty=format:'%C(Yellow)%h %C(Cyan)%ad %C(White)%s%C(Green)%d %C(Blue)[%an]' --date=short
-    lg = "!f () { git log --graph --color=always --abbrev-commit --date=relative --pretty=format:'%x00%h%x00%s%x00%cd%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"%s\\033[33m%s\\033[0m %-40s \\033[32m%14s\\033[0m \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5, $6 }'; }; f"
-    lo  = "!f () { git log --abbrev-commit --date=short --pretty=format:'%h%x00%cd%x00%s%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"\\033[38m%s\\033[0m \\033[32m%s\\033[0m  %-80s \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5 }'; }; f"
-    d = difftool
+    cookiefile = ~/.gitcookies
+
 [github]
     user = devxom
+
+[merge]
+	tool = meld
+
+# OS or Editor files
+._*
+.DS_Store
+Thumbs.db
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# Always-ignore extensions
+*~
+*.diff
+*.err
+*.log
+*.orig
+*.pyc
+*.rej
+*.sass-cache
+*.sw?
+*.vi

@@ -1,13 +1,13 @@
 {
+	"auto_close_tags": true,
 	"auto_complete": true,
 	"auto_complete_delay": 1000,
 	"auto_match_enabled": false,
-	"auto_close_tags":true,
 	"bold_folder_labels": true,
 	"caret_extra_width": 1,
 	"caret_style": "solid",
 	"color_inactive_tabs": true,
-	"color_scheme": "Packages/User/SublimeLinter/base16-ocean.dark (SL).tmTheme",
+	"color_scheme": "Packages/User/SublimeLinter/Cobalt (SL).tmTheme",
 	"create_window_at_startup": false,
 	"default_line_ending": "unix",
 	"detect_indentation": true,
@@ -17,55 +17,51 @@
 	"draw_white_space": "all",
 	"enable_tab_scrolling": false,
 	"ensure_newline_at_eof_on_save": true,
-	"gutter":true,
-	"margin":2,
 	"fallback_encoding": "Cyrillic (Windows 1251)",
 	"file_exclude_patterns":
 	[
-		".*_*",
+		"*.sublime-workspace",
+		".DS_Store",
 		"*.pyc",
 		"*.pyo",
-		".DS_Store",
 		"*.psd",
-		"*.db",
-		"*.sublime-workspace"
+		".*_*",
+		"*.db"
 	],
 	"fold_buttons": true,
 	"folder_exclude_patterns":
 	[
-		".git",
-		".vscode",
-		"log",
-		"tmp",
-		".cache",
-		"__pycache__",
-		".git",
-		".vagrant",
+		"bower_components",
 		"node_modules",
-		"bower_components"
+		"__pycache__",
+		".vagrant",
+		".cache",
+		".git",
+		"log",
+		"tmp"
 	],
-	"font_face": "Hack",
+	"font_face": "Fira Code",
 	"font_options":
 	[
-		"gray_antialias",
-		"subpixel_antialias"
+		"subpixel_antialias",
+		"gray_antialias"
 	],
-	"font_size": 11,
+	"font_size": 13,
+	"gutter": true,
 	"hayaku_CSS_colors_case": "lowercase",
 	"hayaku_CSS_numbers_leading_zero": false,
 	"hayaku_CSS_syntax_autoguess":
 	[
 		"selector {",
-		"	property:value;",
+		" 	property:value;",
 		"	}"
 	],
 	"highlight_line": true,
 	"highlight_moded_tabs": true,
-	"hot_exit": false,
+	"hot_exit": true,
 	"ignored_packages":
 	[
 		"Markdown",
-		"MarkdownEditing",
 		"Vintage"
 	],
 	"indent_guide_options":
@@ -77,6 +73,7 @@
 	"line_numbers": true,
 	"line_padding_bottom": 1,
 	"line_padding_top": 1,
+	"margin": 2,
 	"new_window_settings":
 	{
 		"hide_open_files": true,
@@ -88,21 +85,21 @@
 	"overlay_scroll_bars": "enabled",
 	"rulers":
 	[
-		80, 120
+		80,
+		120
 	],
-	"save_on_focus_lost": true,
 	"scroll_past_end": true,
+	"show_encoding": true,
 	"stats_format": "☐$o ✔$d ✘$c",
 	"stats_ignore_archive": true,
 	"sublimelinter": true,
 	"tab_completion": true,
 	"tab_size": 2,
 	"tabs_medium": true,
-	"theme": "Spacegray.sublime-theme",
+	"theme": "Default.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"wide_caret": true,
-	"word_wrap": true,
-	// "show_tab_close_buttons":false,
-	"show_encoding": true
+	"word_separators": "./\\()\"'-:,.;<>~!@#%^&*|+=[]{}`~?",
+	"word_wrap": true
 }

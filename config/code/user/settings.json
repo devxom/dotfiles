@@ -1,0 +1,74 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    //-------- Editor configuration --------
+    // Controls the font family.
+    // , Menlo, Monaco, Consolas, \"Droid Sans Mono\", \"Courier New\", monospace, \"Droid Sans Fallback\", Monaco, Source Code Pro, Hack, Inconsolata, Consolas, Menlo,
+    "editor.fontFamily": "Fira Code",
+    "editor.rulers": [80, 120],
+    // Controls the font size.
+    "editor.fontSize": 16,
+    // Controls visibility of the glyph margin
+    "editor.glyphMargin": true,
+    // The number of spaces a tab is equal to.
+    "editor.tabSize": 2,
+    // Controls after how many characters the editor will wrap to the next line. Setting this to 0 turns on viewport width wrapping (word wrapping). Setting this to -1 forces the editor to never wrap.
+    "editor.wrappingColumn": 120,
+    "editor.renderWhitespace": false,
+    // Enables font ligatures
+    "editor.fontLigatures": true,
+
+    //-------- Files configuration --------
+    // Configure file associations to languages (e.g. "*.extension": "html"). These have precedence over the default associations of the languages installed.
+    "files.associations": {
+        "*.md": "markdown",
+        "*.txt": "markdown"
+    },
+
+    // The default character set encoding to use when reading and writing files.
+    "files.encoding": "utf8",
+
+    //-------- Git configuration --------
+    // Path to the git executable
+    "git.path": "/usr/bin/git",
+
+    // Whether auto fetching is enabled.
+    "git.autofetch": false,
+
+    //-------- Telemetry configuration --------
+    // Enable usage data and errors to be sent to Microsoft.
+    "telemetry.enableTelemetry": false,
+
+    //-------- Integrated terminal configuration --------
+    // The path of the shell that the terminal uses on Linux.
+    "terminal.integrated.shell.linux": "/usr/bin/zsh",
+    // The path of the shell that the terminal uses on OS X.
+    "terminal.integrated.shell.osx": "/usr/bin/zsh",
+    // The path of the shell that the terminal uses on Windows.
+    "terminal.integrated.shell.windows": "cmd.exe",
+    // The font family used by the terminal (CSS font-family format).
+    "terminal.integrated.fontFamily": "\"Iosevca Term\", Hack",
+
+    //-------- External terminal configuration --------
+    // Customizes which terminal to run on Windows.
+    "terminal.external.windowsExec": "cmd",
+    // Customizes which terminal to run on Linux.
+    "terminal.external.linuxExec": "xfce4-terminal",
+
+    //-------- Licenser configurations --------
+    // License setting for workspace. Available licenses are 'AL2', 'GPLv2', 'GPLv3', 'LGPLv3', 'MIT', 'BSD'
+    "licenser.license": "MIT",
+    // Author name of the project.
+    "licenser.author": "Ilya Reshetnikov",
+    // Project name of the workspace belong to. This is used for GPL license template. This property should be in 'Workspace Settings'.
+
+    //-------- Gist Configuration --------
+    // OAuth Github Token
+    "gist.oauth_token": "36c273bd25f7414881019393a0eaf1d772fbf3bd",
+
+    "json.schemas": [{
+        "fileMatch": [
+            "/bower.json"
+        ],
+        "url": "http://json.schemastore.org/bower"
+    }]
+}

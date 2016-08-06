@@ -1,15 +1,22 @@
 {
 	"auto_match_enabled": false,
+		// Layout
+	"color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Dark.tmTheme",
 	"draw_centered": false,
+	"word_wrap": true,
+	"wrap_width": 120,
+	// Line
+	"line_padding_top": 2,
+	"line_padding_bottom": 2,
 	"extensions":
 	[
 		"mdown",
 		"txt",
 		"md"
 	],
-	"font_face": "Hack",
-	"font_size": 16,
+	"font_size": 14,
 	"translate_tabs_to_spaces": false,
-	"word_wrap": true,
-	"wrap_width": -1
+	// Automatically switches list bullet when indenting blank list item with <Tab>.
+	"mde.list_indent_auto_switch_bullet": true,
+	"word_wrap": true
 }
