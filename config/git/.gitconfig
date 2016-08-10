@@ -44,23 +44,6 @@
 [pager]
     diff = LESS=RS less -c
 
-# Use git and git+ssh instead of https
-[url "git://github.com/"]
-  insteadOf = https://github.com/
-
-[url "git@github.com:"]
-  pushInsteadOf = "git://github.com/"
-
-[url "git@github.com:"]
-  pushInsteadOf = "https://github.com/"
-
-# Use https instead of git and git+ssh
-[url "https://github.com/"]
-  insteadOf = git://github.com/
-
-[url "https://github.com/"]
-  insteadOf = git@github.com:
-
 [http]
     cookiefile = ~/.gitcookies
 
