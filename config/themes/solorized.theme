@@ -1,0 +1,98 @@
+!-------------------------------------------------------------------------------
+! i3wm Color theme Solorized >> ~/.config/i3/config
+!-------------------------------------------------------------------------------
+
+# Variables for colors
+set $bg-color            #FDF6E3
+set $text-color          #B58900
+set $inactive-bg-color   #FDF6E3
+set $inactive-text-color #586E75
+set $active-bg-color     #FDF6E3
+set $active-text-color   #586E75
+set $urgent-bg-color     #DC322F
+set $urgent-text-color   #FAFAFA
+set $indicator           #268BD2
+set $text-color-rofi     #FAFAFA
+
+bar{
+  colors {
+    background $bg-color
+    statusline #586E75
+    separator  #586E75
+    #                  border                 background           text
+    focused_workspace  $text-color            $bg-color            $text-color
+    active_workspace   $inactive-text-color   $active-bg-color     $active-text-color
+    inactive_workspace $inactive-bg-color     $inactive-bg-color   $inactive-text-color
+    urgent_workspace   $urgent-bg-color       $urgent-bg-color     $urgent-text-color
+  }
+}
+
+# window colors
+#                       border              background          text                  indicator
+client.focused          $text-color         $bg-color           $text-color           $indicator
+client.unfocused        $inactive-bg-color  $inactive-bg-color  $inactive-text-color  $indicator
+client.focused_inactive $inactive-bg-color  $inactive-bg-color  $inactive-text-color  $indicator
+client.urgent           $urgent-bg-color    $urgent-bg-color    $text-color           $indicator
+
+
+
+
+!-------------------------------------------------------------------------------
+! Urxvt Color theme Solorized >> ~/.Xresourse
+!-------------------------------------------------------------------------------
+
+urxvt.foreground: #586e75
+urxvt.background: #fdf6e3
+urxvt.cursorColor: #586e75
+urxvt.color0: #002b36
+urxvt.color8: #657b83
+urxvt.color1: #dc322f
+urxvt.color9: #dc322f
+urxvt.color2: #859900
+urxvt.color10: #859900
+urxvt.color3: #b58900
+urxvt.color11: #b58900
+urxvt.color4: #268bd2
+urxvt.color12: #268bd2
+urxvt.color5: #6c71c4
+urxvt.color13: #6c71c4
+urxvt.color6: #2aa198
+urxvt.color14: #2aa198
+urxvt.color7: #93a1a1
+urxvt.color15: #fdf6e3
+*background: #002b36
+*foreground: #657b83
+*fadeColor: #002b36
+*cursorColor: #93a1a1
+*pointerColorBackground: #586e75
+*pointerColorForeground: #93a1a1
+
+
+!-------------------------------------------------------------------------------
+! ROFI Color theme Solorized >> ~/.Xresourse
+!-------------------------------------------------------------------------------
+rofi.color-enabled: true
+rofi.color-window: #EEE8D5, #EEE8D5, #003642
+rofi.color-normal: #EEE8D5, #819396, #EEE8D5, #b58900, #003642
+rofi.color-active: #EEE8D5, #008ed4, #EEE8D5, #003642, #008ed4
+rofi.color-urgent: #EEE8D5, #da4281, #EEE8D5, #003642, #da4281
+
+
+!-------------------------------------------------------------------------------
+! Dunst Color theme Solorized >> ~/.config/dunst/dunstrc
+!-------------------------------------------------------------------------------
+[frame]
+    width = 2
+    color = "#FAFAFA"
+[urgency_low]
+    background = "#EEE8D5"
+    foreground = "#586E75"
+    timeout = 5
+[urgency_normal]
+    background = "#EEE8D5"
+    foreground = "#586E75"
+    timeout = 5
+[urgency_critical]
+    background = "#DC322F"
+    foreground = "#FDF6E3"
+    timeout = 10
