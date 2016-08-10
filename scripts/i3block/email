@@ -5,7 +5,7 @@
 new=$(~/.local/bin/check-email.sh -q)
 
 if [ $new -gt 0 ]; then
-    echo " $new"
+    echo "🖂 $new"
     echo 
     echo "#FFF600"
     

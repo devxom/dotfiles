@@ -4,7 +4,7 @@
 # Based https://gist.github.com/grenade/3b3c5b17586881d01142
 #  $ curl -L https://git.io/vo0ow | sh
 
-START_CMD="ffd"
+START_CMD="firefox"
 INSTALLATION_DIR="/opt/firefox-dev"
 
 # Detect the architecture

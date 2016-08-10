@@ -243,8 +243,12 @@ bindkey "^N" insert-last-word
 # Node.js nvm
 [[ -d ~/.nvm ]] && source ~/.nvm/nvm.sh
 
-# Ruby RVM
-[[ -d ~/.rvm ]] && source $HOME/.rvm/scripts/rvm
+export NVM_DIR="/home/dhoner/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 gifify() {
   if [[ -n "$1" ]]; then
@@ -268,11 +272,6 @@ echo "Loading Aliases..."
 # echo "Internal IP:      $IIP"
 
 # echo "-----------------------------------------"
-
-#   my_ps: List processes owned by my user:
-#   ------------------------------------------------------------
-    my_ps() { ps $@ -u $USER -o pid,%cpu,%mem,start,time,bsdtime,command ; }
-
 
 #   ---------------------------
 #   6.  NETWORKING

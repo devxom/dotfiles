@@ -1,7 +1,6 @@
 #!/bin/sh
 
-# Source: https://gist.github.com/simonewebdesign/8507139
-# Sublime Text 3 install with Package Control (last update: 18 May 2016)
+# Sublime Text 3 install with Package Control (last update: 30 July 2016)
 #
 # No need to download this script, just run it on your terminal:
 #
@@ -46,8 +45,6 @@ sudo ln -s $INSTALLATION_DIR/sublime_text.desktop /usr/share/applications/sublim
 # Set the icon (thanks gcaracuel)
 sudo sed -i.bak 's/Icon=sublime-text/Icon=\/opt\/sublime_text\/Icon\/128x128\/sublime-text.png/g' /usr/share/applications/sublime_text.desktop
 
-echo ""
+echo
 echo "Sublime Text 3 installed successfully!"
 echo "Run with: subl"
-
-# TODO: Check & merg with https://gist.github.com/dee1337/80b24a66c5e6a0cd97d9

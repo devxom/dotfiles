@@ -22,6 +22,7 @@
 
 [color]
     ui = auto
+    interactive = auto
 
 [color "branch"]
     current = yellow bold
@@ -46,14 +47,17 @@
 # Use git and git+ssh instead of https
 [url "git://github.com/"]
   insteadOf = https://github.com/
+
 [url "git@github.com:"]
   pushInsteadOf = "git://github.com/"
+
 [url "git@github.com:"]
   pushInsteadOf = "https://github.com/"
 
 # Use https instead of git and git+ssh
 [url "https://github.com/"]
   insteadOf = git://github.com/
+
 [url "https://github.com/"]
   insteadOf = git@github.com:
 
@@ -72,8 +76,8 @@
     versiontag = v
 
 [alias]
-    a = add --all
-    ai = add -i
+    # Add untracked, remove deleted, and show status
+    adda = !git add -A && git status
     #############
     ap = apply
     as = apply --stat
@@ -115,8 +119,10 @@
     #############
     g = grep -p
     #############
-    l = log --oneline
-    lg = log --oneline --graph --decorate
+    l  = log --graph --pretty=format:'%C(Yellow)%h %C(Cyan)%ad %C(White)%s%C(Green)%d %C(Blue)[%an]' --date=short
+    lg = "!f () { git log --graph --color=always --abbrev-commit --date=relative --pretty=format:'%x00%h%x00%s%x00%cd%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"%s\\033[33m%s\\033[0m %-40s \\033[32m%14s\\033[0m \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5, $6 }'; }; f"
+    lo  = "!f () { git log --abbrev-commit --date=short --pretty=format:'%h%x00%cd%x00%s%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"\\033[38m%s\\033[0m \\033[32m%s\\033[0m  %-80s \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5 }'; }; f"
+    last = "!git log -7 HEAD --abbrev-commit --date=short --pretty=format:'%h%x00%cd%x00%s%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"\\033[31m%s\\033[m \\033[32m%s\\033[m  %-.40s \\033[30;1m%s\\033[m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5 }';"
     #############
     ls = ls-files
     lsf = "!git ls-files | grep -i"
@@ -222,19 +228,4 @@
     human = name-rev --name-only --refs=refs/heads/*
     serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
     snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
-
-[alias]
-    a = add
-    ca = commit -a
-    c = commit
-    co = checkout
-    d = diff
-    rh = reset --hard
-    s = status
-    t = tag
-    last = "!git log -7 HEAD --abbrev-commit --date=short --pretty=format:'%h%x00%cd%x00%s%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"\\033[31m%s\\033[m \\033[32m%s\\033[m  %-.40s \\033[30;1m%s\\033[m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5 }';"
-    undo = checkout --
     sum  = git-summary
-    l  = log --graph --pretty=format:'%C(Yellow)%h %C(Cyan)%ad %C(White)%s%C(Green)%d %C(Blue)[%an]' --date=short
-    lg = "!f () { git log --graph --color=always --abbrev-commit --date=relative --pretty=format:'%x00%h%x00%s%x00%cd%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"%s\\033[33m%s\\033[0m %-40s \\033[32m%14s\\033[0m \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5, $6 }'; }; f"
-    lo  = "!f () { git log --abbrev-commit --date=short --pretty=format:'%h%x00%cd%x00%s%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"\\033[38m%s\\033[0m \\033[32m%s\\033[0m  %-80s \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5 }'; }; f"

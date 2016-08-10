@@ -10,7 +10,12 @@ unrar
 htop
 xterm
 ranger
-wireshark
+scrot
+pwgen
+curl
+wget
+expect
+mutt
 
 # GUI apps
 libreoffice
@@ -20,10 +25,12 @@ gimp
 mpv
 keepassx
 google-chrome-unstable
-evince
-evince-djvu
-transmission
+zathura
+zathura-plugins-all
 filezilla
+xfce4-terminal
+xfce4-screenshooter
+
 
 # X utils
 freetype-devel
@@ -69,36 +76,23 @@ mozilla-fira-mono-fonts
 freetype-freeworld
 
 # SpellCheck
-# hunspell-en-US
-# hunspell-ru
-# hunspell-uk
+hunspell-en-US
+hunspell-ru
+hunspell-uk
 ## Vocabular
-# stardict
-# stardict-dic-en
-# stardict-dic-ru
+stardict
+stardict-dic-en
+stardict-dic-ru
 ## Docker
 # docker
 # docker-compose
 # docker-vim
 ##Terminal
-# scrot
-# pwgen
-# curl
-# wget
-# expect
-## GUI apps
-# gnome-tweak-tool
-# shutter
-# freemind
-# dia
+
 ## X utils
 # xorg-x11-apps
 # xorg-x11-fonts-misc
 # xsel
 # xdotool
 # wmctrl
-## Haskell
-# haskell-platform
-# golang
-# ruby
-# rubygems
+

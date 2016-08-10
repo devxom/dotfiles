@@ -1,66 +1,109 @@
-! --- ~/.Xresources ------------------------------------------------------------
-! ------------------------------------------------------------------------------
-! --- generated with 4bit Terminal Color Scheme Designer -----------------------
-! ------------------------------------------------------------------------------
-! --- http://ciembor.github.com/4bit -------------------------------------------
-! ------------------------------------------------------------------------------
+! make otf / ttf fonts look pretty.  does not matter if you are using a bitmap font.
+Xft.autohint: 0
+Xft.rgba:               rgb
+Xft.hinting:            1
+Xft.antialias:          1
+Xft.lcdfilter:          lcddefault
+Xft.hintstyle:          hintslight
+!Xft.dpi:                96
 
-! --- special colors ---
 
-*background: #031030
-*foreground: #d3d3d3
+*scrollBar: false
+*borderLess: false
 
-! --- standard colors ---
+! special
+*.foreground:   #586e75
+*.background:   #fdf6e3
+*.cursorColor:  #586e75
 
 ! black
-*color0: #000000
-
-! bright_black
-*color8: #1c1c1c
+*.color0:       #002b36
+*.color8:       #657b83
 
 ! red
-*color1: #a34746
-
-! bright_red
-*color9: #eed8d8
+*.color1:       #dc322f
+*.color9:       #dc322f
 
 ! green
-*color2: #46a347
-
-! bright_green
-*color10: #d8eed8
+*.color2:       #859900
+*.color10:      #859900
 
 ! yellow
-*color3: #a2a346
-
-! bright_yellow
-*color11: #eeeed8
+*.color3:       #b58900
+*.color11:      #b58900
 
 ! blue
-*color4: #4746a3
-
-! bright_blue
-*color12: #d8d8ee
+*.color4:       #268bd2
+*.color12:      #268bd2
 
 ! magenta
-*color5: #a346a2
-
-! bright_magenta
-*color13: #eed8ee
+*.color5:       #6c71c4
+*.color13:      #6c71c4
 
 ! cyan
-*color6: #46a2a3
-
-! bright_cyan
-*color14: #d8eeee
+*.color6:       #2aa198
+*.color14:      #2aa198
 
 ! white
-*color7: #d3d3d3
-
-! bright_white
-*color15: #ffffff
+*.color7:       #93a1a1
+*.color15:      #fdf6e3
 
 
-! ------------------------------------------------------------------------------
-! --- end of terminal colors section -------------------------------------------
-! ------------------------------------------------------------------------------
+URxvt.letterSpace: -1
+URxvt.font: xft:Source Code Pro:size=14
+
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+
+! clean up urxvt, add keybinds
+URxvt.intensityStyles: false
+URxvt.scrollBar: false
+URxvt.keysym.Shift-Up: command:\033]720;1\007
+URxvt.keysym.Shift-Down: command:\033]721;1\007
+URxvt.resize-font.smaller: C-Down
+URxvt.resize-font.bigger: C-Up
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.internalBorder: 5
+
+urxvt.foreground: #586e75
+urxvt.background: #fdf6e3
+urxvt.cursorColor: #586e75
+
+urxvt.color0: #002b36
+urxvt.color8: #657b83
+
+urxvt.color1: #dc322f
+urxvt.color9: #dc322f
+
+urxvt.color2: #859900
+urxvt.color10: #859900
+
+urxvt.color3: #b58900
+urxvt.color11: #b58900
+
+urxvt.color4: #268bd2
+urxvt.color12: #268bd2
+
+urxvt.color5: #6c71c4
+urxvt.color13: #6c71c4
+
+urxvt.color6: #2aa198
+urxvt.color14: #2aa198
+
+urxvt.color7: #93a1a1
+urxvt.color15: #fdf6e3
+
+*background: #002b36
+*foreground: #657b83
+*fadeColor: #002b36
+*cursorColor: #93a1a1
+*pointerColorBackground: #586e75
+*pointerColorForeground: #93a1a1
+
+rofi.color-enabled: true
+rofi.color-window: #404552, #404552, #404552
+rofi.color-normal: #404552, #ffffff, #404552, #404552, #ffc200
+rofi.color-active: #404552, #ffffff, #404552, #404552, #00ff00
+rofi.color-urgent: #404552, #ffffff, #404552, #404552, #ff0000

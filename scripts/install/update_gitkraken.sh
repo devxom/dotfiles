@@ -1,4 +1,6 @@
 #!/bin/sh
+# Based https://gist.github.com/grenade/3b3c5b17586881d01142
+
 cd /tmp/
 
 URL="https://release.gitkraken.com/linux/gitkraken-amd64.tar.gz"

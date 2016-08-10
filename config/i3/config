@@ -12,11 +12,11 @@ set $tag1    "1:term"
 set $tag2    "2:dvcs"
 set $tag3    "3:othr"
 set $tag4    "4:brws"
-set $tag5    "5:code"
-set $tag6    "6:mail"
-set $tag7    "7:skyp"
-set $tag8    "8"
-set $tag9    "9"
+set $tag5    "5:"
+set $tag6    "6:"
+set $tag7    "7:"
+set $tag8    "8:"
+set $tag9    "9:"
 
 # Variables for colors
 set $bg-color            #FDF6E3
@@ -31,7 +31,7 @@ set $indicator           #268BD2
 set $text-color-rofi     #FAFAFA
 
 # Font
-font pango:Cantarell, FontAwesome 10
+font pango:Cantarell, FontAwesome 12
 
 # bindsym $mod+u exec i3-input -F 'workspace "%s"' -P 'Workspace name: '
 # focus last urgent window
@@ -39,9 +39,6 @@ bindsym $mod+u          [urgent=latest] focus
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier   $mod
-
-# hide borders adjacent to the screen edge
-hide_edge_borders   both
 
 # No mouse cursor "stealing" across workspaces
 focus_follows_mouse no
@@ -53,9 +50,9 @@ workspace_layout         tabbed
 popup_during_fullscreen  ignore
 
 # start dmenu (a program launcher)
-bindsym $mod+d          exec rofi -show run -location 2 -lines 6 -opacity "95" -font "Inconsolata 16"
-bindsym $mod+Ctrl+d     exec rofi -show window -lines 10 -location 0 -xoffset 0 run -font "Inconsolata 16" -o 75
-bindsym $mod+Shift+d    exec rofi -show ssh
+bindsym $mod+d          exec rofi -show run  -location 2 -disable-history -lines 6 -opacity "95" -font "Inconsolata 16"
+bindsym $mod+Ctrl+d     exec rofi -show window - lines 10 -disable-history -location 0 -xoffset 0 run -font "Inconsolata 16" -o 75
+bindsym $mod+Shift+d    exec rofi -show ssh -disable-history
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -66,23 +63,12 @@ bindsym $mod+k           focus down
 bindsym $mod+l           focus up
 bindsym $mod+semicolon   focus right
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left        focus left
-bindsym $mod+Down        focus down
-bindsym $mod+Up          focus up
-bindsym $mod+Right       focus right
-
 ## Movement ##
 # move focused window
-bindsym $mod+Shift+h            move left
-bindsym $mod+Shift+j            move down
-bindsym $mod+Shift+k            move up
-bindsym $mod+Shift+l            move right
-# cursor keys
-bindsym $mod+Shift+Left         move left
-bindsym $mod+Shift+Down         move down
-bindsym $mod+Shift+Up           move up
-bindsym $mod+Shift+Right        move right
+bindsym $mod+Shift+j            move left
+bindsym $mod+Shift+k            move down
+bindsym $mod+Shift+l            move up
+bindsym $mod+Shift+semicolon    move right
 
 # WindowRule
 new_window pixel 1
@@ -168,6 +154,8 @@ bindsym Control+$Alt+Return exec i3-msg exit
 bindsym Control+$Alt+Delete exec systemctl poweroff
 # reboot computer
 bindsym Control+$Alt+BackSpace exec systemctl reboot
+# Lock
+bindsym Control+$mod+l exec i3lock -e -n -i ~/Pictures/lock.png
 # lock screen
 # bindsym Control+Mod1+l exec i3-msg workspace 1 && i3lock -c 111111 -d
 # bindsym Control+$Alt+s exec i3-msg workspace $tag1 && sleep 3 && xset dpms force standby
@@ -179,12 +167,6 @@ mode "" {
     bindsym k resize grow height 10 px or 10 ppt
     bindsym l resize shrink height 10 px or 10 ppt
     bindsym semicolon resize grow width 10 px or 10 ppt
-
-    # same bindings, but for the arrow keys
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -241,6 +223,8 @@ assign [class="Upwork"]                 → $tag8
 #    xprop | grep -i 'class'         #
 for_window [class="Lxappearance"]           floating enable
 for_window [class="File-roller" ]           floating enable
+# for_window [class="Thunar" ]                floating enable
+for_window [class="Nautilus" ]              floating enable
 for_window [class="Skype" ]                 floating enable
 for_window [class="mpv" ]                   floating enable
 for_window [class="Gnome-contacts" ]        floating enable
@@ -257,6 +241,8 @@ for_window [window_type="menu"]             floating enable
 
 # Decorate
 for_window [class="urxvt"]                  border pixel 2
+for_window [class="Google-chrome-unstable" title=" - Google Chrome$"] border none
+
 
 #Shutdown,Reboot,Lock Screen
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
@@ -275,34 +261,22 @@ mode "$mode_system" {
 
 bindsym $mod+Pause mode "$mode_system"
 
-
-#change keyboard layout
-# set $keyboardMode "keyboard e=ee, u=us"
-# mode $keyboardMode {
-#     bindsym e exec "setxkbmap ee", mode "default"
-#     bindsym u exec "setxkbmap us", mode "default"
-#     # back to normal: Enter or Escape
-#     bindsym Return mode "default"
-#     bindsym Escape mode "default"
-# }
-
-# bindsym $mod+Shift+i mode $keyboardMode
 bar
 {
     output VGA1
     # status_command i3blocks -c $HOME/.config/i3blocks/config.i3
     status_command $HOME/.config/i3/conkyi3-2.sh
-    modifier $mod
     position top
-    font pango:Source Code Pro 10
+    font pango:Inconsolata, FontAwesome 12
     colors {
         background $bg-color
         statusline #586E75
         separator  #586E75
-        focused_workspace  #B58900 #EEE8D5 #B58900
-        active_workspace   #586E75 #EEE8D5 #586E75
-        inactive_workspace #FDF6E3 #EEE8D5 #586E75
-        urgent_workspace   #DC322F #DC322F #FAFAFA
+        #                  border                 background           text
+        focused_workspace  $text-color            $bg-color            $text-color
+        active_workspace   $inactive-text-color   $active-bg-color     $active-text-color
+        inactive_workspace $inactive-bg-color     $inactive-bg-color   $inactive-text-color
+        urgent_workspace   $urgent-bg-color       $urgent-bg-color     $urgent-text-color
     }
 }
 
@@ -310,10 +284,10 @@ bar
 {
     output HDMI1
     status_command $HOME/.config/i3/conkyi3.sh
-    modifier $mod
     tray_output VGA1
     position top
-    font pango:Source Code Pro 10
+    tray_padding 0
+    font pango:Inconsolata, FontAwesome 12
     colors {
         background $bg-color
         statusline #586E75
@@ -335,21 +309,6 @@ client.unfocused        $inactive-bg-color  $inactive-bg-color  $inactive-text-c
 client.focused_inactive $inactive-bg-color  $inactive-bg-color  $inactive-text-color  $indicator
 client.urgent           $urgent-bg-color    $urgent-bg-color    $text-color           $indicator
 
-# colors {
-#   background #EEE8D5
-#   statusline #586E75
-#   separator  #586E75
-#   focused_workspace  #B58900 #EEE8D5 #B58900
-#   active_workspace   #586E75 #EEE8D5 #586E75
-#   inactive_workspace #FDF6E3 #EEE8D5 #586E75
-#   urgent_workspace   #DC322F #DC322F #FAFAFA
-# }
-#                        border  backgr. text    indicator
-# client.focused          #B58900 #FDF6E3 #B58900 #268bd2
-# client.focused_inactive #FDF6E3 #FDF6E3 #586E75 #FDF6E3
-# client.unfocused        #FDF6E3 #FDF6E3 #586E75 #FDF6E3
-# client.urgent           #DC322F #DC322F #FAFAFA #268BD2
-
 # exec_always /usr/bin/gnome-settings-daemon
 exec $nsi $HOME/.config/i3/autostart
 
@@ -367,45 +326,3 @@ bindsym XF86AudioRaiseVolume      exec $nsi amixer -c 0 -q set Master 1%+
 
 bindsym    $mod+Shift+Return      exec $nsi urxvt -e tmux
 bindsym    $mod+$alt+f            exec $nsi urxvt -title ranger -e ranger
-# bindsym    $mod+$alt+f            exec $nsi urxvt -title "ranger [#]" -e sudo ranger
-# bindsym    $mod+Control+u         exec $nsi "urxvt -title updating -e yaourt -Syyua --noconfirm && i3-msg restart"
-# bindsym    $mod+n                 exec $nsi urxvt -title music -e ncmpcpp
-# bindsym $r $mod+t                 exec $nsi urxvt -title Mail -e mutt
-
-## bindings for ThinkPad keyboard
-# bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 -20%; exec /usr/bin/pactl play-sample volume_blip; exec /usr/bin/killall -USR1 i3status
-# bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume 0 +20%; exec /usr/bin/pactl play-sample volume_blip; exec /usr/bin/killall -USR1 i3status
-# bindsym XF86AudioMute exec /usr/bin/pactl set-sink-volume 0 0; exec /usr/bin/pactl play-sample volume_blip; exec /usr/bin/killall -USR1 i3status
-# bindsym XF86Launch1 exec /usr/bin/pactl play-sample that_was_easy
-# bindsym XF86MonBrightnessUp exec /usr/bin/xbacklight -inc 10
-# bindsym XF86MonBrightnessDown exec /usr/bin/xbacklight -dec 5
-#
-
-## bindings for MS Natural Ergonomic Keyboard 4000
-# bindsym XF86HomePage exec /usr/bin/xdg-open "http://www.github.com"; workspace $tag4
-# bindsym XF86Search exec /usr/bin/xdg-open "http://www.google.com"; workspace $tag4
-# bindsym XF86Mail exec /usr/bin/xdg-email; workspace 5
-# bindsym XF86Launch5
-# bindsym XF86Launch6
-# bindsym XF86Launch7
-# bindsym XF86Launch8
-# bindsym XF86Launch9
-# bindsym XF86AudioMute
-# bindsym XF86AudioLowerVolume
-# bindsym XF86AudioRaiseVolume
-# bindsym XF86AudioPlay
-# bindsym XF86Favourites echo DOESNOTWORK
-# bindsym XF86Calculator exec /usr/bin/xcalc
-# bindsym XF86Calculator exec /usr/bin/xbacklight -set 100
-## FLock keys
-# bindsym Help
-# bindsym Undo
-# bindsym Redo
-# bindsym XF86New
-# bindsym SunOpen
-# bindsym XF86Close
-# bindsym XF86Reply
-# bindsym XF86MailForward
-# bindsym XF86Send
-# bindsym XF86Save
-# bindsym Print
