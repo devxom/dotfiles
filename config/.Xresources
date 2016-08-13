@@ -1,109 +1,109 @@
-! make otf / ttf fonts look pretty.  does not matter if you are using a bitmap font.
-Xft.autohint: 0
-Xft.rgba:               rgb
-Xft.hinting:            1
-Xft.antialias:          1
-Xft.lcdfilter:          lcddefault
-Xft.hintstyle:          hintslight
-!Xft.dpi:                96
+Xft.autohint              : 0
+Xft.rgba                  : rgb
+Xft.hinting               : true
+Xft.antialias             : true
+Xft.lcdfilter             : lcddefault
+Xft.hintstyle             : hintslight
+Xft.dpi                   : 96
 
+URxvt.letterSpace         : -1
+URxvt.font                : xft:Source Code Pro:size=14
 
-*scrollBar: false
-*borderLess: false
+URxvt.perl-ext-common     : default,matcher
+URxvt.url-launcher        : /usr/bin/xdg-open
+URxvt.matcher.button      : true
+
+URxvt.intensityStyles     : false
+URxvt.saveLines           : 12000
+URxvt.scrollBar           : false
+URxvt.scrollstyle         : rxvt
+URxvt.keysym.Shift-Up     : command:\033]720;1\007
+URxvt.keysym.Shift-Down   : command:\033]721;1\007
+URxvt.resize-font.smaller : C-Down
+URxvt.resize-font.bigger  : C-Up
+URxvt.iso14755            : false
+URxvt.iso14755_52         : false
+URxvt.internalBorder      : 5
+
+*scrollBar                : false
+*borderLess               : false
 
 ! special
-*.foreground:   #586e75
-*.background:   #fdf6e3
-*.cursorColor:  #586e75
+*.foreground              : #928374
+*.background              : #282828
+*.cursorColor             : #928374
 
 ! black
-*.color0:       #002b36
-*.color8:       #657b83
+*.color0                  : #1d2021
+*.color8                  : #d5c4a1
 
 ! red
-*.color1:       #dc322f
-*.color9:       #dc322f
+*.color1                  : #cc241d
+*.color9                  : #fb4934
 
 ! green
-*.color2:       #859900
-*.color10:      #859900
+*.color2                  : #98971a
+*.color10                 : #b8bb26
 
 ! yellow
-*.color3:       #b58900
-*.color11:      #b58900
+*.color3                  : #d79921
+*.color11                 : #fabd2f
 
 ! blue
-*.color4:       #268bd2
-*.color12:      #268bd2
+*.color4                  : #458588
+*.color12                 : #83a598
 
 ! magenta
-*.color5:       #6c71c4
-*.color13:      #6c71c4
+*.color5                  : #b16286
+*.color13                 : #d3869b
 
 ! cyan
-*.color6:       #2aa198
-*.color14:      #2aa198
+*.color6                  : #689d6a
+*.color14                 : #8ec07c
 
 ! white
-*.color7:       #93a1a1
-*.color15:      #fdf6e3
+*.color7                  : #a89984
+*.color15                 : #ebdbb2
 
+! special
+Urxvt.foreground          : #928374
+Urxvt.background          : #282828
+Urxvt.cursorColor         : #928374
 
-URxvt.letterSpace: -1
-URxvt.font: xft:Source Code Pro:size=14
+! black
+Urxvt.color0              : #1d2021
+Urxvt.color8              : #d5c4a1
 
-URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher: /usr/bin/xdg-open
-URxvt.matcher.button: 1
+! red
+Urxvt.color1              : #cc241d
+Urxvt.color9              : #fb4934
 
-! clean up urxvt, add keybinds
-URxvt.intensityStyles: false
-URxvt.scrollBar: false
-URxvt.keysym.Shift-Up: command:\033]720;1\007
-URxvt.keysym.Shift-Down: command:\033]721;1\007
-URxvt.resize-font.smaller: C-Down
-URxvt.resize-font.bigger: C-Up
-URxvt.iso14755: false
-URxvt.iso14755_52: false
-URxvt.internalBorder: 5
+! green
+Urxvt.color2              : #98971a
+Urxvt.color10             : #b8bb26
 
-urxvt.foreground: #586e75
-urxvt.background: #fdf6e3
-urxvt.cursorColor: #586e75
+! yellow
+Urxvt.color3              : #d79921
+Urxvt.color11             : #fabd2f
 
-urxvt.color0: #002b36
-urxvt.color8: #657b83
+! blue
+Urxvt.color4              : #458588
+Urxvt.color12             : #83a598
 
-urxvt.color1: #dc322f
-urxvt.color9: #dc322f
+! magenta
+Urxvt.color5              : #b16286
+Urxvt.color13             : #d3869b
 
-urxvt.color2: #859900
-urxvt.color10: #859900
+! cyan
+Urxvt.color6              : #689d6a
+Urxvt.color14             : #8ec07c
 
-urxvt.color3: #b58900
-urxvt.color11: #b58900
+! white
+Urxvt.color7              : #a89984
+Urxvt.color15             : #ebdbb2
 
-urxvt.color4: #268bd2
-urxvt.color12: #268bd2
-
-urxvt.color5: #6c71c4
-urxvt.color13: #6c71c4
-
-urxvt.color6: #2aa198
-urxvt.color14: #2aa198
-
-urxvt.color7: #93a1a1
-urxvt.color15: #fdf6e3
-
-*background: #002b36
-*foreground: #657b83
-*fadeColor: #002b36
-*cursorColor: #93a1a1
-*pointerColorBackground: #586e75
-*pointerColorForeground: #93a1a1
-
-rofi.color-enabled: true
-rofi.color-window: #404552, #404552, #404552
-rofi.color-normal: #404552, #ffffff, #404552, #404552, #ffc200
-rofi.color-active: #404552, #ffffff, #404552, #404552, #00ff00
-rofi.color-urgent: #404552, #ffffff, #404552, #404552, #ff0000
+rofi.color-enabled        : true
+rofi.color-window         : #404552, #404552, #404552
+rofi.color-normal         : #404552, #ffffff, #404552, #404552, #ffc200
+rofi.color-active         : #404552, #ffffff, #404552, #404552, #00ff00
+rofi.color-urgent         : #404552, #ffffff, #404552, #404552, #ff0000
