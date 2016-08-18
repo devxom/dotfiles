@@ -8,15 +8,30 @@ set $nsi   $nsi
 set $r     --release
 
 # Tag
-set $tag1    "1:term"
-set $tag2    "2:dvcs"
+set $tag1    "❶:term"
+set $tag2    "❷:dvcs"
 set $tag3    "3:othr"
-set $tag4    "4:brws"
+set $tag4    "4:"
 set $tag5    "5:"
 set $tag6    "6:"
 set $tag7    "7:"
 set $tag8    "8:"
-set $tag9    "9:"
+set $tag9    "9:"
+
+# set $w1 1❶ 
+# set $w2 2❷ 
+# set $w3 3❸ 
+# set $w4 4❹ 
+# set $w5 5❺ 
+# set $w6 6❻ 
+# set $w7 7❼ ☘
+# set $w8 8❽
+
+
+# exec $nsi urxvt --name=_scratchpad_
+# exec $nsi urxvt --name=_todo_ -e "vim '+set nofen' ${HOME}/ye-olde-cloude/cee/todo.md"
+# exec $nsi "sleep 1; i3-msg '[instance=_todo_] mark todo, move scratchpad'"
+# bindsym $alt+p exec $nsi urxvt --name=_scratchpad_
 
 # Variables for colors
 set $bg-color            #FDF6E3
@@ -92,7 +107,7 @@ bindsym $mod+f              fullscreen
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
-# floating mode
+# floating mod
 floating_modifier           $mod
 bindsym $mod+space          focus mode_toggle
 
@@ -155,7 +170,8 @@ bindsym Control+$Alt+Delete exec systemctl poweroff
 # reboot computer
 bindsym Control+$Alt+BackSpace exec systemctl reboot
 # Lock
-bindsym Control+$mod+l exec i3lock -e -n -i ~/Pictures/lock.png
+# bindsym Control+$mod+l exec i3lock -e -n -i ~/Pictures/lock.png
+bindsym Control+$mod+l exec ~/.config/i3/pixel-lock.sh
 # lock screen
 # bindsym Control+Mod1+l exec i3-msg workspace 1 && i3lock -c 111111 -d
 # bindsym Control+$Alt+s exec i3-msg workspace $tag1 && sleep 3 && xset dpms force standby
@@ -264,8 +280,9 @@ bindsym $mod+Pause mode "$mode_system"
 bar
 {
     output VGA1
-    # status_command i3blocks -c $HOME/.config/i3blocks/config.i3
-    status_command $HOME/.config/i3/conkyi3-2.sh
+    status_command i3blocks -c $HOME/.config/i3blocks/config.i3
+    # status_command $HOME/.config/i3/conkyi3-2.sh
+    mode dock
     position top
     font pango:Inconsolata, FontAwesome 12
     colors {
@@ -285,6 +302,7 @@ bar
     output HDMI1
     status_command $HOME/.config/i3/conkyi3.sh
     tray_output VGA1
+    mode dock
     position top
     tray_padding 0
     font pango:Inconsolata, FontAwesome 12
@@ -314,15 +332,15 @@ exec $nsi $HOME/.config/i3/autostart
 
 # Hotkeys
 bindsym $mod+Control+t       exec xfce4-terminal
-bindsym $mod+Control+e       exec subl
-bindsym $mod+Shift+i         exec urxvt -e alsamixer
 bindsym XF86PowerOff         exec systemctl poweroff
 # start a terminal
 # bindsym $mod+Return exec xfce4-terminal
 bindsym    $mod+Return            exec $nsi urxvt
 # Alsa Audio controls11
-bindsym XF86AudioLowerVolume      exec $nsi amixer -c 0 -q set Master 1%-; exec notify-send 'alert';
-bindsym XF86AudioRaiseVolume      exec $nsi amixer -c 0 -q set Master 1%+
+# bindsym    XF86AudioLowerVolume      exec $nsi amixer -c 0 -q set Master 1%-;
+# bindsym    XF86AudioRaiseVolume      exec $nsi amixer -c 0 -q set Master 1%+;
+bindsym    XF86AudioLowerVolume      exec $nsi ~/.config/i3/scripts/volume.sh down
+bindsym    XF86AudioRaiseVolume      exec $nsi ~/.config/i3/scripts/volume.sh up
 
 bindsym    $mod+Shift+Return      exec $nsi urxvt -e tmux
 bindsym    $mod+$alt+f            exec $nsi urxvt -title ranger -e ranger
