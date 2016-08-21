@@ -23,7 +23,7 @@
     icon_position = off
     history_length = 20
     allow_markup = yes
-    format = "<b>%a</b>\n%s  ◦  <i>%b</i>"
+    format = "<b>%a</b>\n%s  ◦  <i>%b</i> %p"
 
 [frame]
     width = 2
