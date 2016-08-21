@@ -7,9 +7,12 @@
 	"installed_packages":
 	[
 		"AdvancedNewFile",
+		"Align Arguments",
 		"Alignment",
+		"AlignTab",
 		"AutoFileName",
 		"Babel",
+		"Base16 Color Schemes",
 		"Color Highlighter",
 		"ColorPicker",
 		"DocBlockr",
@@ -24,13 +27,17 @@
 		"HTML-CSS-JS Prettify",
 		"HTML5",
 		"Jade",
+		"JSON Reindent",
 		"Markdown Preview",
 		"MarkdownEditing",
 		"MarkdownHighlighting",
+		"Minify",
 		"NodeRequirer",
 		"Package Control",
 		"PlainTasks",
 		"SCSS",
+		"Seti_UI",
+		"SideBarEnhancements",
 		"Stylus",
 		"SublimeLinter",
 		"SublimeLinter-contrib-eslint",
@@ -38,11 +45,11 @@
 		"SublimeLinter-jscs",
 		"SublimeLinter-jshint",
 		"SublimeLinter-json",
-		"Theme - itg.flat",
-		"Theme - Solarized Flat",
 		"Theme - Spacegray",
 		"Themr",
 		"TrailingSpaces",
-		"View In Browser"
+		"View In Browser",
+		"VimL",
+		"Yeti_UI"
 	]
 }
