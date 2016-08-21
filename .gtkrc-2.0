@@ -2,9 +2,9 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/dhoner/.gtkrc-2.0.mine"
-gtk-theme-name="NumixSolarized"
+gtk-theme-name="Adwaita"
 gtk-icon-theme-name="Paper"
-gtk-font-name="SFNS Display 12"
+gtk-font-name="Cantarell 13"
 gtk-cursor-theme-name="Adwaita"
 gtk-cursor-theme-size=0
 gtk-toolbar-style=GTK_TOOLBAR_ICONS
