@@ -95,7 +95,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
+ZSH_CUSTOM=$HOME/.zsh
 
 for r in $HOME/.zsh/*.zsh; do
   if [[ $DEBUG > 0 ]]; then

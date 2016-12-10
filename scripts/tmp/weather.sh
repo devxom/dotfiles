@@ -2,7 +2,7 @@
 LOCATION=${1}
 if [ -z "$1" ]
 then
-  LOCATION=raleigh
+  LOCATION=moscow
 fi
 curl http://wttr.in/moon
 curl http://wttr.in/${LOCATION}
