@@ -1,0 +1,24 @@
+# ==[ Subject: One line only short meaningful description for logs ]===|
+
+
+# ==[ Details: Describe what changed and explain why it changed ]======|
+
+
+# ==[ Footers: Uncomment and edit where applicable ]=[72 char]=========|
+#
+# GitHub-Issue:
+# Ticket:
+# Reviewed-By:
+# See-Also:
+# Fixes:
+# Resolves:
+# Closes:
+#
+# Types:
+# * [Feature]
+# * [Fix]
+# * [Docs]
+# * [Style]
+# * [Refactor]
+# * [Test]
+# * [Chore]
