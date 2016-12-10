@@ -1,29 +1,37 @@
+#!/usr/bin/zsh
+
+# ================================================
+# Functions
+# ================================================
+
 function server() {
   local port="${1:-8000}"
   xdg-open "http://localhost:${port}/"
   python -m SimpleHTTPServer "$port"
 }
 
-extract () {
+
+function extract() {
+  echo Extracting $1 ...
   if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1 C extract/   ;;
-      *.tar.gz)    tar xzf $1 C extract/   ;;
-      *.tar.xz)    tar xvf $1 C extract/   ;;
-      *.bz2)       bunzip2 $1 C extract/   ;;
-      *.rar)       unrar e $1 C extract/   ;;
-      *.gz)        gunzip $1  C extract/   ;;
-      *.tar)       tar xf $1  C extract/   ;;
-      *.tbz2)      tar xjf $1 C extract/   ;;
-      *.tgz)       tar xzf $1 C extract/   ;;
-      *.zip)       unzip $1   C extract/   ;;
-      *.Z)         uncompress C extract/1  ;;
-      *.7z)        7z x $1    C extract/   ;;
-      *)     echo "'$1' cannot be extracted via extract()" ;;
-    esac
+      case $1 in
+          *.tar.bz2)   tar xjf $1    ;;
+          *.tar.gz)    tar xzf $1    ;;
+          *.tar.xz)    tar xJf $1    ;;
+          *.bz2)       bunzip2 $1    ;;
+          *.rar)       rar x $1      ;;
+          *.gz)        gunzip $1     ;;
+          *.tar)       tar xf $1     ;;
+          *.tbz2)      tar xjf $1    ;;
+          *.tgz)       tar xzf $1    ;;
+          *.zip)       unzip $1      ;;
+          *.Z)         uncompress $1 ;;
+          *.7z)        7z x $1       ;;
+          *)           echo "'$1' cannot be extracted via extract()" ;;
+      esac
   else
-   echo "'$1' is not a valid file"
-fi
+      echo "'$1' is not a valid file"
+  fi
 }
 
 startup(){
@@ -54,10 +62,11 @@ ggr() {
 }
 
 gmail() { xdg-open "https://mail.google.com/mail/#inbox"; }
-inbox() { xdg-open "https://inbox.google.com/u/0/"; }
 
 ff () { /usr/bin/find . -name "$@" ; }      # ff:       Find file under the current directory
+
 ffs () { /usr/bin/find . -name "$@"'*' ; }  # ffs:      Find file whose name starts with a given string
+
 ffe () { /usr/bin/find . -name '*'"$@" ; }  # ffe:      Find file whose name ends with a given string
 
 my_ps() { ps $@ -u $USER -o pid,%cpu,%mem,start,time,bsdtime,command ; }
@@ -77,6 +86,7 @@ note() {
 }
 
 httpHeaders () { /usr/bin/curl -I -L $@ ; }
+
 httpDebug () { /usr/bin/curl $@ -o /dev/null -w "dns: %{time_namelookup} connect: %{time_connect} pretransfer: %{time_pretransfer} starttransfer: %{time_starttransfer} total: %{time_total}\n" ; }
 
 # creates an archive (*.tar.gz) from given directory.
@@ -142,3 +152,5 @@ banner () {
 todo() {
   git commit --allow-empty -m "TODO: $*"
 }
+
+# vim: set ts=2 expandtab sw=2:

@@ -1,5 +1,9 @@
 #!/usr/bin/zsh
 
+# ================================================
+# BindKeys
+# ================================================
+
 # bindkey -v
 bindkey "^[[5~" up-line-or-history
 bindkey "^[[6~" down-line-or-history
@@ -17,5 +21,7 @@ bindkey '^r' history-incremental-search-backward
 
 # # bindkey -s '^p' 'mpc playlist --format "%file%" | separate | ls_color\n'
 # bindkey -s '^t' '\\htop\n'
-# # bindkey -s '^n' '\\ncmpcpp\n'
-# bindkey -s '^v' 'nvim\n'
+# bindkey -s '^n' '\\cmus\n'
+# bindkey -s '^v' 'e\n'
+
+# vim: set ts=2 expandtab sw=2:
