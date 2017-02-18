@@ -1,73 +1,51 @@
-[credential]
-	helper = cache --timeout=3600
-
-[push]
-    default = tracking
-
+[gpg]
+	program = gpg2
+[user]
+	signingkey = BDDE55C917FC7877
+	name = Ilya Reshetnikov
+	email = devxom@gmail.com
 [diff]
     renames = copies
     mnemonicprefix = true
-
-[user]
-    email = devxom@gmail.com
-    name = Ilya Reshetnikov
-	  signingkey = placeholder
-
 [core]
-    editor = subl -w
     excludesfile = ~/.gitignore
     whitespace = -trailing-space
-
 [color]
     ui = auto
     interactive = auto
-
 [color "branch"]
     current = yellow bold
     local = green bold
     remote = cyan bold
-
 [color "diff"]
     meta = yellow bold
     frag = magenta bold
     old = red bold
     new = green bold
     whitespace = red reverse
-
 [color "status"]
     added = green bold
     changed = yellow bold
     untracked = red bold
-
 [pager]
     diff = LESS=RS less -c
-
 [http]
     cookiefile = ~/.gitcookies
-
-[github]
-    user = devxom
-    token = placeholder
-
 [gitflow "prefix"]
     feature = feature-
     release = release-
     hotfix = hotfix-
     support = support-
     versiontag = v
-
 [pretty]
-    # tut: http://gitimmersion.com/lab_10.html
-    # ref: http://linux.die.net/man/1/git-log
     # Result: <short-sha> <commit-message> (<pointer-names>) -- <commit-author-name>; <relative-time>
     nice = "%C(yellow)%h%C(reset) %C(white)%s%C(cyan)%d%C(reset) -- %an; %ar"
-
 [push]
     default = simple
-
 [alias]
     ac = apply --check
-    adda = !git add -A && git status    # Add untracked, remove deleted, and show status
+    # Add untracked, remove deleted, and show status
+    adda = !git add -A && git status
     ama = am --abort
     amr = am --resolved
     ams = am --skip
@@ -112,9 +90,3 @@
     unassumeall = !git assumed | xargs git update-index --no-assume-unchanged
     whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
     whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
-    # Fetch a repository ($1) and checkout its ref ($2) HEAD
-    # Use: `git browse https://github.com/name/repo <commit-ish>`
-    browse = !bash -c 'git fetch $1 ${2:-HEAD} && git checkout FETCH_HEAD' -
-    # Fetch and checkout a GitHub Pull Request from a remote (defaults to `origin`)
-    # Use: `git gh-pr 123` or `git gh-pr 123 upstream`
-    gh-pr = !bash -c 'git fetch -fu ${2:-origin} refs/pull/$1/head:gh-pr/$1 && git checkout gh-pr/$1' -
