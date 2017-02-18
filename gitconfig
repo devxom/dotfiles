@@ -1,9 +1,12 @@
-[gpg]
-	program = gpg2
 [user]
 	signingkey = BDDE55C917FC7877
 	name = Ilya Reshetnikov
 	email = devxom@gmail.com
+[gpg]
+	program = gpg2
+[github]
+    user = devxom
+    token = <REDACTED>    
 [diff]
     renames = copies
     mnemonicprefix = true
@@ -43,50 +46,40 @@
 [push]
     default = simple
 [alias]
-    ac = apply --check
-    # Add untracked, remove deleted, and show status
-    adda = !git add -A && git status
-    ama = am --abort
-    amr = am --resolved
-    ams = am --skip
+    st = status
+    ci = commit
+    ca = commit -a -m
+    co = checkout
+    br = branch -a
     ap = apply
     as = apply --stat
-    assume = update-index --assume-unchanged
-    assumeall = "!git st -s | awk {'print $2'} | xargs git assume"
-    assumed = "!git ls-files -v | grep ^h | cut -c 3-"
-    b = branch
-    ba = branch -a
+    branches = branch -a
     barebranch = !sh -c 'git symbolic-ref HEAD refs/heads/$1 && git rm --cached -r . && git clean -xfd' -
-    bd = branch -d
-    br = branch -r
-    c = commit
-    ca = commit -a
-    cad = commit -a --amend
-    cam = commit -am
-    cd = commit --amend
-    ced = commit --allow-empty --amend
-    cem = commit --allow-empty -m
+    pick = cherry-pick
+    # Add untracked, remove deleted, and show status
+    adda = !git add -A && git status
     cleanup = !git clean -df && git stash clear
-    cm = commit -m
-    co = checkout
-    flat = clone --depth 1
     human = name-rev --name-only --refs=refs/heads/*
     l  = log --graph --pretty=format:'%C(Yellow)%h %C(Cyan)%ad %C(White)%s%C(Green)%d %C(Blue)[%an]' --date=short
     lo = "log --graph --date=short --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
     last = "!git log -7 HEAD --abbrev-commit --date=short --pretty=format:'%h%x00%cd%x00%s%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"\\033[31m%s\\033[m \\033[32m%s\\033[m  %-.40s \\033[30;1m%s\\033[m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5 }';"
     lsf = "!git ls-files | grep -i"
-    ours = "!f() { git checkout --ours $@ && git add $@; }; f"
-    plom = pull origin master
-    plpm = pull upstream master
-    psao = push --all origin
-    psom = push origin master
-    serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
-    snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
-    subpull = !git submodule foreach git pull --tags origin master
-    subrepo = !sh -c 'filter-branch --prune-empty --subdirectory-filter $1 master' -
-    theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
     trim = !git remote prune origin && git gc
+    assume = update-index --assume-unchanged
+    assumeall = "!git st -s | awk {'print $2'} | xargs git assume"
+    assumed = "!git ls-files -v | grep ^h | cut -c 3-"
     unassume = update-index --no-assume-unchanged
     unassumeall = !git assumed | xargs git update-index --no-assume-unchanged
+    ours = "!f() { git checkout --ours $@ && git add $@; }; f"
+    theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
     whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
     whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+    subpull = !git submodule foreach git pull --tags origin master
+    subrepo = !sh -c 'filter-branch --prune-empty --subdirectory-filter $1 master' -
+    flat = clone --depth 1
+    serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
+    snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+# Any GitHub repo with my username should be checked out r/w by default
+# http://rentzsch.tumblr.com/post/564806957/public-but-hackable-git-submodules
+[url "git@github.com:devxom/"]
+    insteadOf = "git://github.com/devxom/"
