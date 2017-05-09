@@ -1,0 +1,3 @@
+[submodule "binfiles"]
+	path = binfiles
+	url = git@github.com:devxom/binfiles.git
