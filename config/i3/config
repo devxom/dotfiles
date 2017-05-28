@@ -1,9 +1,10 @@
+# i3 config file (v4)
+
 # Variables
-set $super Mod4
+set $mod Mod4
 set $alt Mod1
 set $i3_path /home/dhoner/.config/i3
-set $TERMINAL xfce4-terminal
-set $nsi --no-startup-id
+set $TERMINAL gnome-terminal
 
 # Navigation
 set $left  h
@@ -11,29 +12,15 @@ set $down  j
 set $up    k
 set $right l
 
-# Tag          ☘        
-set $tag1      "1:"
-set $tag2      "2:"
-set $tag3      "3:"
-set $tag4      "4:"
-set $tag5      "5:"
-set $tag6      "6:"
-set $tag7      "7"
-set $tag8      "8"
-set $tag9      "9"
-
 # Font
-font pango:Cantarell 13
+set $font Play, FontAwesome 11
 
-# focus last urgent window
-bindsym $super+u      [urgent=latest] focus
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:$font
 
-# Use Mouse+$super to drag floating windows to their wanted position
-floating_modifier   $super
-
-# No mouse cursor "stealing" across workspaces
-focus_follows_mouse no
-mouse_warping       none
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier   $mod
 
 # Some apps are "dumb"
 popup_during_fullscreen  smart
@@ -41,135 +28,138 @@ workspace_layout         tabbed
 popup_during_fullscreen  ignore
 
 # kill focused window
-bindsym $super+Shift+q kill
+bindsym $mod+Shift+q kill
 
 # change focus
-bindsym $super+$left          focus left
-bindsym $super+$down          focus down
-bindsym $super+$up            focus up
-bindsym $super+$right         focus right
+bindsym $mod+$left          focus left
+bindsym $mod+$down          focus down
+bindsym $mod+$up            focus up
+bindsym $mod+$right         focus right
+
+# focus last urgent window
+bindsym $mod+u [urgent=latest] focus
+# focus the parent container
+bindsym $mod+a focus parent
+# focus the child container
+bindsym $mod+z focus child
 
 # move focused window
-bindsym $super+Shift+$left     move left
-bindsym $super+Shift+$down     move down
-bindsym $super+Shift+$up       move up
-bindsym $super+Shift+$right    move right
+bindsym $mod+Shift+$left     move left
+bindsym $mod+Shift+$down     move down
+bindsym $mod+Shift+$up       move up
+bindsym $mod+Shift+$right    move right
 
 # WindowRule
-new_window pixel 1
-new_float  pixel 1
-hide_edge_borders both
+new_window pixel  1
+new_float  normal 1
+hide_edge_borders   both
 
-bindsym $super+m move scratchpad
-bindsym $super+o scratchpad show
+# set popups during fullscreen mode
+popup_during_fullscreen smart
+
+# window border settings
+
+
+bindsym $mod+m move scratchpad
+bindsym $mod+o scratchpad show
 
 # splitting mode
-bindsym $super+g split h
-bindsym $super+v split v
+bindsym $mod+s split h
+bindsym $mod+v split v
 
-## Layout ##
-# change container layout (stacked, tabbed, toggle split)
-#bindsym $super+s             layout stacking
-bindsym $super+t layout tabbed
-bindsym $super+e layout toggle split
-bindsym $super+f fullscreen
+# Change container layout (stacked, tabbed, toggle split)
+bindsym $mod+t layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $super+Shift+space floating toggle
+bindsym $mod+Shift+space floating toggle
 
 # floating mod
-floating_modifier $super
-bindsym $super+space focus mode_toggle
+bindsym $mod+space focus mode_toggle
 
 # sticky window (newest version of i3)
-bindsym $super+Shift+s sticky toggle
-
-# focus the parent container
-bindsym $super+a focus parent
-bindsym $alt+t border toggle
-
-# focus the child container
-# bindsym $super+d focus child
-bindsym $super+c move absolute position center
-
-# switch to workspace
-bindsym $super+comma      workspace prev
-bindsym $super+period     workspace next
-bindsym $super+1          workspace $tag1
-bindsym $super+2          workspace $tag2
-bindsym $super+3          workspace $tag3
-bindsym $super+4          workspace $tag4
-bindsym $super+5          workspace $tag5
-bindsym $super+6          workspace $tag6
-bindsym $super+7          workspace $tag7
-bindsym $super+8          workspace $tag8
-bindsym $super+9          workspace $tag9
-
-# move focused container to workspace
-bindsym $super+Shift+comma  move container to workspace prev
-bindsym $super+Shift+period move container to workspace next
-bindsym $super+Shift+1      move container to workspace $tag1
-bindsym $super+Shift+2      move container to workspace $tag2
-bindsym $super+Shift+3      move container to workspace $tag3
-bindsym $super+Shift+4      move container to workspace $tag4
-bindsym $super+Shift+5      move container to workspace $tag5
-bindsym $super+Shift+6      move container to workspace $tag6
-bindsym $super+Shift+7      move container to workspace $tag7
-bindsym $super+Shift+8      move container to workspace $tag8
-bindsym $super+Shift+9      move container to workspace $tag9
-
-# reload/restart/exit
-bindsym $super+Shift+c reload
-bindsym $super+Shift+r restart
+bindsym $mod+Shift+s sticky toggle
 
 # Border togle
-bindsym $super+b border toggle
+bindsym $mod+b border toggle
 
-# screenshot
-bindsym Print exec xfce4-screenshooter
-bindsym $super+Print exec xfce4-screenshooter -r -i
-bindsym $super+Control+Print exec xfce4-screenshooter -w -i
+# switch to workspace
+bindsym $mod+1  workspace 1
+bindsym $mod+2  workspace 2
+bindsym $mod+3  workspace 3
+bindsym $mod+4  workspace 4
+bindsym $mod+5  workspace 5
+bindsym $mod+6  workspace 6
+bindsym $mod+7  workspace 7
+bindsym $mod+8  workspace 8
+bindsym $mod+9  workspace 9
 
+# move focused container to workspace
+bindsym $mod+Shift+1  move container to workspace 1
+bindsym $mod+Shift+2  move container to workspace 2
+bindsym $mod+Shift+3  move container to workspace 3
+bindsym $mod+Shift+4  move container to workspace 4
+bindsym $mod+Shift+5  move container to workspace 5
+bindsym $mod+Shift+6  move container to workspace 6
+bindsym $mod+Shift+7  move container to workspace 7
+bindsym $mod+Shift+8  move container to workspace 8
+bindsym $mod+Shift+9  move container to workspace 9
+
+bindsym $mod+Shift+Control+l  move workspace to output right
+bindsym $mod+Shift+Control+h  move workspace to output left
+
+# reload the configuration file
+bindsym $mod+Shift+c  reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym Control+$Alt+Return exec i3-msg exit
-# shutdown computer
-bindsym Control+$Alt+Delete exec systemctl poweroff
-# reboot computer
-bindsym Control+$Alt+BackSpace exec systemctl reboot
-# Lock
-bindsym Control+$super+l exec i3lock -e -n -i ~/Pictures/lock3.png
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym $super+Control+Left  workspace prev
-bindsym $super+Control+Right workspace next
+# resize window (you can also use the mouse for that)
+mode "resize " {
+    # Pressing left will shrink the window’s width.
+    bindsym h resize shrink width 10 px or 10 ppt
+    # Pressing down will grow the window’s height.
+    bindsym j resize grow height 10 px or 10 ppt
+    # Pressing up will shrink the window’s height.
+    bindsym k resize shrink height 10 px or 10 ppt
+    # Pressing right will grow the window’s width.
+    bindsym l resize grow width 10 px or 10 ppt
 
-# Dislpays
-set $left-display VGA1
-set $right-display HDMI1
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
-# Automatically putting clients on specific workspace
-workspace $tag1 output $left-display
-workspace $tag2 output $left-display
-workspace $tag3 output $left-display
-workspace $tag4 output $right-display
-workspace $tag5 output $right-display
-workspace $tag6 output $right-display
-workspace $tag7 output $right-display
-workspace $tag8 output $right-display
+bindsym $mod+r mode "resize "
+
+#Shutdown,Reboot,Lock Screen
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+
+mode "$mode_system" {
+    bindsym l       exec --no-startup-id i3exit lock, mode "default"
+    bindsym e       exec --no-startup-id i3exit logout, mode "default"
+    bindsym s       exec --no-startup-id i3exit suspend, mode "default"
+    bindsym h       exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r       exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Pause mode "$mode_system"
 
 # Assign
-# assign [class="Xfce4-terminal|feh|urxvt|URxvt"] → $tag1
-# assign [class="Transmission|GitKraken|Hexchat"] → $tag2
-# assign [class="Inkscape|Gimp|Pinta|Blender"] → $tag2
-# assign [class="Firefox|Google-chrome-unstable|Opera-developer"] → $tag3
-# assign [class="Subl|Code"] → $tag4
-# assign [class="Pidgin|Skype|tg-upd"] → $tag5
-# assign [class="Upwork"]                 → $tag7
-# assign [class="Nautilus|libreoffice*|Zathura"]               → $tag6
+# assign [class="Xfce4-terminal|feh|urxvt|URxvt|"] → 1
+# assign [class="Subl|Code|Emacs"] → 2
+# assign [class="Firefox|Chromium-browser|chromium-browser"] → 4
+# assign [class="Transmission|Hexchat"] → 9
+# assign [class="Inkscape|Gimp|Pinta|Blender"] → 7
+# assign [class="Pidgin|Skype|telegram-desktop|TelegramDesktop|Hexchat"] → 5
+# assign [class="Nautilus|libreoffice*|Zathura"]               → 6
 
-# Float
-#    xprop | grep -i 'class'         #
-for_window [class="Skype" ] floating enable
-for_window [class="mpv" ] floating enable
 # fix
 for_window [title="^Java$"] floating enable
 for_window [window_role="pop-up"] floating enable
@@ -177,117 +167,68 @@ for_window [window_role="task_dialog"] floating enable
 for_window [window_role="Preferences"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
+
 # Decorate
-for_window [class="urxvt|Xfce4-terminal"] border pixel 2
-for_window [class="Google-chrome-unstable" title=" - Google Chrome$"] border none
-
-bar
-{
-    output VGA1
-    status_command i3blocks -c $HOME/.config/i3blocks/config.i3
-    position top
-    font pango:Inconsolata XL, FontAwesome 13
-    tray_output none
-    colors {
-        background #30363B
-        statusline #deded6
-        separator  #4c5356
-        focused_workspace  #BEBEBE #2A8C8C #deded6
-        active_workspace   #808080 #3A5959 #d7d0c7
-        inactive_workspace #121417 #121417 #deded6
-        urgent_workspace   #cd546c #ef545f #eddcd3
-    }
-}
-# bar
-# {
-#     output HDMI1
-#     status_command i3blocks -c $HOME/.config/i3blocks/config.main.i3
-#     tray_output HDMI1
-#     position top
-#     font pango:Inconsolata XL, FontAwesome 12
-#     colors {
-#         background #30363B
-#         statusline #deded6
-#         separator  #4c5356
-#         focused_workspace  #BEBEBE #2A8C8C #deded6
-#         active_workspace   #808080 #3A5959 #d7d0c7
-#         inactive_workspace #121417 #121417 #deded6
-#         urgent_workspace   #cd546c #ef545f #eddcd3
-#     }
-# }
-
-#Shutdown,Reboot,Lock Screen
-set $supere_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-mode "$supere_system" {
-    bindsym l       exec $nsi i3exit lock, mode "default"
-    bindsym e       exec $nsi i3exit logout, mode "default"
-    bindsym s       exec $nsi i3exit suspend, mode "default"
-    bindsym h       exec $nsi i3exit hibernate, mode "default"
-    bindsym r       exec $nsi i3exit reboot, mode "default"
-    bindsym Shift+s exec $nsi systemctl poweroff
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $super+Pause mode "$supere_system"
-
-mode "" {
-    bindsym $left  resize shrink width 10 px or 10 ppt
-    bindsym $down  resize grow height 10 px or 10 ppt
-    bindsym $up    resize shrink height 10 px or 10 ppt
-    bindsym $right resize grow width 10 px or 10 ppt
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $super + r mode ""
+for_window [class="urxvt|Xfce4-terminal|gnome-terminal"] border pixel 2
+for_window [class="Chromium-browser" title=" - Google Chrome$"] border none
+for_window [class="^(telegram-desktop|skypeforlinux|Telegram-desktop|TelegramDesktop|)$"] move scratchpad, move absolute position 1250 25, resize set 350 875
 
 # Keybindings
-bindsym  $alt+p               exec $nsi $TERMINAL --name=_scratchpad_
-bindsym  $super+d             exec rofi -show run  -location 0 -disable-history -lines 6 -font "Inconsolata 16"
-bindsym  $super+Ctrl+d        exec rofi -show window - lines 10 -location 2 -xoffset 0 run -font "Inconsolata 16"
-bindsym  $super+Shift+d       exec rofi -show ssh -location 2
-bindsym  $super+x             exec keepassx2
+bindsym  $mod+d             exec rofi -show run -location 0 -disable-history -lines 6 -font "Inconsolata 16"
+bindsym  $mod+Ctrl+d        exec rofi -show window -lines 10 -location 2 -xoffset 0 run -font "Inconsolata 16"
+bindsym  $mod+Shift+d       exec rofi -show ssh -location 2
+bindsym  $mod+x             exec keepassx2
+
 # Hotkeys
-bindsym  $super+Control+t     exec $nsi i3-sensible-terminal
-bindsym  $super+Return        exec $nsi $TERMINAL
-bindsym  $super+Shift+Return  exec $nsi $TERMINAL -e tmux
-bindsym  $super+$alt+f        exec $nsi $TERMINAL -title ranger -e ranger
-# Alsa Audio controls
-bindsym  XF86AudioLowerVolume exec $nsi amixer -c 0 -q set Master 1%-;
-bindsym  XF86AudioRaiseVolume exec $nsi amixer -c 0 -q set Master 1%+;
+bindsym  $mod+Control+t     exec --no-startup-id i3-sensible-terminal
+bindsym  $mod+Return        exec --no-startup-id $TERMINAL
+
+# Audio controls
+bindsym XF86AudioMute exec "/usr/bin/pulseaudio-ctl mute"
+bindsym XF86AudioLowerVolume exec "/usr/bin/pulseaudio-ctl down"
+bindsym XF86AudioRaiseVolume exec "/usr/bin/pulseaudio-ctl up"
+bindsym XF86AudioMicMute exec "/usr/bin/pulseaudio-ctl mute-input"
+bindsym XF86AudioPlay exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+
+# Brightness control
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
 bindsym  XF86PowerOff         exec systemctl poweroff
 
-# class                 border  backgr. text    indicator
-client.focused          #000000 #eae9da #000000 #eae9da
-client.focused_inactive #000000 #5f676a #ffffff #5f676a
-client.unfocused        #000000 #30363b #888888 #30363b
-client.urgent           #000000 #9b6465 #ffffff #9b6465
-
-## Default ##
-# client.focused            #4c7899 #285577 #ffffff #2e9ef4
-# client.focused_inactive   #333333 #5f676a #ffffff #484e50
-# client.unfocused          #333333 #222222 #888888 #292d2e
-# client.urgent             #2f343a #900000 #ffffff #900000
+# Lock
+bindsym Control+$mod+l exec --no-startup-id i3lock -n -ti $HOME/Pictures/lock.png
+# screenshots
+bindsym --release $mod+Shift+p exec scrot -s
+# bindsym Print exec xfce4-screenshooter
+# bindsym $mod+Print exec xfce4-screenshooter -r -i
+# bindsym $mod+Control+Print exec xfce4-screenshooter -w -i
 
 # Startup applications
+# Polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# Wallpaper
+exec_always --no-startup-id "sh -c 'sleep 1; feh --bg-fill ~/Pictures/wallpaper-1.jpg'"
+
+# Autolock after 10 minutes
+exec --no-startup-id xautolock -time 10 -locker "i3lock -n -ti $HOME/Pictures/lock.png"
+
 # (With i3, gnome-session-properties are pretty much useless and don't work)
-exec_always $nsi feh --bg-fill ~/Pictures/Rise.png
-exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 # Should fix privilege elevation
-exec $nsi xset dpms 600 1200 2000 &
-exec $nsi xrandr --output HDMI1 --mode 1600x900 --pos 1920x0 --output VGA1 --mode 1920x1080
-exec $nsi setxkbmap -layout "us,ru" -option "grp:alt_shift_toggle,grp_led:scroll" &
-exec $nsi $i3_path/start-gnome-keyring.sh
-exec $nsi gnome-settings-daemon
-exec $nsi nm-applet
-exec $nsi compton -b
-exec $nsi dunst
-exec $nsi rofi
-exec $nsi parcellite
-exec $nsi rescuetime
-exec $nsi redshift-gtk
-## Auto $i3_path/autostart
-# exec $nsi $i3_path/autostart
-# exec $nsi tg-upd
-# exec $nsi slack
-# exec $nsi gnome-sound-applet
+# Should fix privilege elevation
+exec --no-startup-id xset dpms 600 1200 2000 &
+exec --no-startup-id setxkbmap -layout "us,ru" -option "grp:alt_shift_toggle,grp_led:scroll" &
+exec --no-startup-id $i3_path/start-gnome-keyring.sh
+exec --no-startup-id gnome-settings-daemon
+exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 
+exec --no-startup-id compton --config ~/.config/compton/compton.conf
+exec --no-startup-id redshift-gtk
+exec --no-startup-id nm-applet
+exec --no-startup-id dunst
+exec --no-startup-id rofi
+exec --no-startup-id dropbox start
+exec --no-startup-id telegram-desktop
+
+# exec --no-startup-id $i3_path/autostart
+
+# exec --no-startup-id slack
