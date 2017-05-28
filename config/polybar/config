@@ -1,0 +1,394 @@
+;=====================================================
+;
+;   Polybar Config
+;
+;=====================================================
+
+[colors]
+foreground = ${colors.white}
+background = ${colors.bgblue}
+bgblue = #010024
+white = #f8f8f8
+pink = #F92672
+dpink = #a01849
+cyan = #23ceef
+dcyan = #157b8f
+purple = #8e4fff
+dpurple = #5a32a2
+orange = #f4a63a
+dorange = #aa7428
+green = #A6E22E
+dgreen = #77A915
+black = #000000
+
+
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+
+
+[bar/primary]
+width = 100%
+height = 22
+offset-x = 0
+offset-y = 0
+
+foreground = ${colors.foreground}
+background = ${colors.background}
+
+underline-size = 2
+
+spacing = 1
+padding-left = 0
+padding-right = 1
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = Play:fontformat=truetype:size=12:heavy;3
+font-1 = FontAwesome:fontformat=truetype:size=11;3
+font-2 = Unifont:fontformat=truetype:size=12;3
+
+tray-position = right
+tray-padding = 1
+
+modules-left = i3 xwindow
+modules-center =
+modules-right = volume cpu memory wlan xkeyboard github date powermenu
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+wm-restack = i3
+
+; MODULES
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:80:...%
+label-padding = 4
+
+
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+label-layout =  %layout%
+label-layout-padding = 1
+label-layout-background = ${colors.dgreen}
+label-layout-underline = ${colors.green}
+
+label-indicator-padding = 1
+label-indicator-background = ${colors.dpink}
+label-indicator-underline = ${colors.pink}
+
+
+
+[module/i3]
+type = internal/i3
+index-sort = true
+wrapping-scroll = false
+pin-workspaces = true
+strip-wsnumbers = false
+
+format = <label-state> <label-mode>
+
+label-mode-padding = 1
+label-mode-background = ${colors.dpink}
+label-mode-underline = ${colors.pink}
+
+label-focused = %icon%
+label-focused-padding = 1
+label-focused-background = ${colors.dcyan}
+label-focused-underline = ${colors.cyan}
+
+label-unfocused = %icon%
+label-unfocused-padding = 1
+
+label-urgent = %icon%
+label-urgent-padding = 1
+label-urgent-background = ${colors.dpink}
+label-urgent-underline = ${colors.pink}
+
+label-visible = %icon%
+label-visible-padding = 1
+label-visible-background = ${colors.dcyan}
+label-visible-underline = ${colors.dcyan}
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 6;
+ws-icon-7 = 7;
+ws-icon-8 = 8;8
+ws-icon-9 = 9;
+
+
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix-foreground = ${colors.dcyan}
+format-underline = ${colors.cyan}
+label =  %percentage%% 
+format-padding = 1
+
+
+
+[module/memory]
+type = internal/memory
+interval = 2
+
+label =  %percentage_used%%
+format-padding = 1
+format-underline = ${colors.cyan}
+
+
+
+[module/network]
+type = internal/network
+interval = 3.0
+
+format-connected = <label-connected> <ramp-signal>
+format-connected-padding = 1
+format-connected-background = ${colors.dpurple}
+format-connected-underline = ${colors.purple}
+
+format-disconnected-padding = 1
+format-disconnected-background = ${colors.dpink}
+format-disconnected-underline = ${colors.pink}
+
+ramp-signal-0 = ▁
+ramp-signal-1 = ▂
+ramp-signal-2 = ▃
+ramp-signal-3 = ▄
+ramp-signal-4 = ▅
+ramp-signal-5 = ▆
+ramp-signal-6 = ▇
+ramp-signal-7 = █
+
+
+
+[module/eth]
+inherit = module/network
+interface = eno1
+
+label-connected =  %local_ip%
+label-disconnected = 
+
+
+
+[module/wlan]
+inherit = module/network
+interface = wlp6s0
+
+label-connected =  %essid%
+label-disconnected = 
+
+
+
+[module/date]
+type = internal/date
+
+; Seconds to sleep between updates
+interval = 1.0
+
+; See "man date" for details on how to format the date string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+date = %a %b %d, 
+
+; Optional time format
+time = %H:%M
+
+; if `date-alt` or `time-alt` is defined, clicking
+; the module will toggle between formats
+date-alt = %A, %d %B %Y
+time-alt = %H:%M:%S
+
+label = %date% %time%
+format =    <label>
+;format-background = #ddffffff
+format-background = #88000000
+;format-foreground = #333
+format-padding = 3
+
+
+
+[module/redshift]
+type = custom/script
+interval = 5
+
+exec = ~/.config/polybar/redshift.sh
+
+
+
+[module/volume]
+type = internal/volume
+
+format-volume = <ramp-volume>  <label-volume>
+format-muted = <label-muted>
+label-volume = %percentage%
+label-muted =   muted
+label-muted-foreground = #aaa
+format-volume-padding = 3
+format-muted-padding = 3
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-headphones-0 = 
+
+
+
+[module/powermenu]
+type = custom/menu
+
+format-spacing = 2
+
+label-open = "  "
+label-open-foreground = ${colors.pink}
+label-close =  cancel
+label-close-foreground = ${colors.pink}
+label-separator = |
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+menu-0-2 = log out
+menu-0-2-exec = menu-open-3
+menu-0-3 = 
+menu-0-3-exec = "~/.i3/i3lock-fancy-multimonitor/lock &"
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = reboot
+
+menu-2-0 = power off
+menu-2-0-exec = poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+menu-3-0 = log out
+menu-3-0-exec = i3-msg exit
+menu-3-1 = cancel
+menu-3-1-exec = menu-open-0
+
+
+
+[module/battery]
+type = internal/battery
+
+full-at = 99
+
+battery = BAT0
+adapter = AC0
+
+poll-interval = 5
+
+format-charging = <animation-charging>  <label-charging>
+format-discharging = <ramp-capacity>  <label-discharging>
+format-full = <ramp-capacity>  <label-full>
+label-charging = %percentage%
+label-discharging = %percentage%
+label-full = %percentage%
+format-charging-padding = 3
+format-discharging-padding = 3
+format-full-padding = 3
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature%
+label-warn = %temperature%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.dorange}
+
+[module/backlight]
+type = internal/backlight
+
+card = intel_backlight
+enable-scroll = true
+
+format = <ramp> <label>
+label = %percentage%
+
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+
+
+
+[module/github]
+type = internal/github
+interval = 30
+
+; Accessing an access token stored in file
+token = ${file:/home/dhoner/.config/polybar/github.token}
+
+; Weather empty notifications should be displayed or not
+empty-notifications = true
+
+format = <label>
+format-prefix = " "
+format-underline = #ffffff
+
+; Available tokens:
+;   %notifications% (default)
+; Default: Notifications: %notifications%
+label = %notifications%
+
+
+
+[module/vpncheck]
+type = custom/script
+exec = pgrep openvpn
+interval = 5
+label = vpn
+format-underline = #268bd2
+format-prefix = " "
+format-prefix-foreground = #5b
+
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+compositing-background = screen
+compositing-foreground = sourcec
+ompositing-border = over
+
+
+; vim:ft=dosini
