@@ -1,85 +1,173 @@
 [user]
-	signingkey = <REDACTED>
-	name = Ilya Reshetnikov
-	email = devxom@gmail.com
-[gpg]
-	program = gpg2
+        name = Ilya Reshetnikov
+        email = devxom@gmail.com
+
 [github]
-	user = devxom
-	token = <REDACTED>    
-[diff]
-	renames = copies
-	mnemonicprefix = true
+        user = devxom
+
+[branch]
+        autosetupmerge = true
+
+[url "git@heroku.com:"]
+        insteadOf = "heroku:"
+
+[url "git@github.com:"]
+        insteadOf = "gh:"
+        pushInsteadOf = "github:"
+
 [core]
-	excludesfile = ~/.gitignore
-	whitespace = -trailing-space
+        editor = emacs
+        pager = less -FRSX
+        whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+        excludesfile = ~/.gitignore_global
+        quotepath = false
+        autocrlf = input
 [color]
-	ui = auto
-	interactive = auto
+        diff = auto
+        status = auto
+        branch = auto
+        interactive = auto
+        ui = true
+        pager = true
+
 [color "branch"]
-	current = yellow bold
-	local = green bold
-	remote = cyan bold
+        current = yellow reverse
+        local = yellow
+        remote = green
+
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+        meta = yellow bold
+        frag = magenta bold
+        old = red bold
+        new = green bold
+
 [color "status"]
-	added = green bold
-	changed = yellow bold
-	untracked = red bold
-[pager]
-	diff = LESS=RS less -c
-[http]
-	cookiefile = ~/.gitcookies
-[gitflow "prefix"]
-	feature = feature-
-	release = release-
-	hotfix = hotfix-
-	support = support-
-	versiontag = v
-[pretty]
-	# Result: <short-sha> <commit-message> (<pointer-names>) -- <commit-author-name>; <relative-time>
-	nice = "%C(yellow)%h%C(reset) %C(white)%s%C(cyan)%d%C(reset) -- %an; %ar"
-[push]
-	default = simple
+        added = yellow
+        changed = green
+        untracked = cyan
+
 [alias]
-	st = status
-	ci = commit
-	ca = commit -a -m
-	co = checkout
-	br = branch -a
-	ap = apply
-	as = apply --stat
-	branches = branch -a
-	barebranch = !sh -c 'git symbolic-ref HEAD refs/heads/$1 && git rm --cached -r . && git clean -xfd' -
-	pick = cherry-pick
-	# Add untracked, remove deleted, and show status
-	adda = !git add -A && git status
-	cleanup = !git clean -df && git stash clear
-	human = name-rev --name-only --refs=refs/heads/*
-	l  = log --graph --pretty=format:'%C(Yellow)%h %C(Cyan)%ad %C(White)%s%C(Green)%d %C(Blue)[%an]' --date=short
-	lo = "log --graph --date=short --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
-	last = "!git log -7 HEAD --abbrev-commit --date=short --pretty=format:'%h%x00%cd%x00%s%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"\\033[31m%s\\033[m \\033[32m%s\\033[m  %-.40s \\033[30;1m%s\\033[m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5 }';"
-	lsf = "!git ls-files | grep -i"
-	trim = !git remote prune origin && git gc
-	assume = update-index --assume-unchanged
-	assumeall = "!git st -s | awk {'print $2'} | xargs git assume"
-	assumed = "!git ls-files -v | grep ^h | cut -c 3-"
-	unassume = update-index --no-assume-unchanged
-	unassumeall = !git assumed | xargs git update-index --no-assume-unchanged
-	ours = "!f() { git checkout --ours $@ && git add $@; }; f"
-	theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
-	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
-	whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
-	subpull = !git submodule foreach git pull --tags origin master
-	subrepo = !sh -c 'filter-branch --prune-empty --subdirectory-filter $1 master' -
-	flat = clone --depth 1
-	serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
-	snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
-# Any GitHub repo with my username should be checked out r/w by default
-# http://rentzsch.tumblr.com/post/564806957/public-but-hackable-git-submodules
-[url "git@github.com:devxom/"]
-	insteadOf = "git://github.com/devxom/"
+        ci = commit
+        co = checkout
+        st = status
+        br = branch
+        di = diff
+        pu = pull
+        cp = cherry-pick
+        pom = push origin master
+        pum = pull upstream master
+        ca = commit -a -m
+        cas = commit -s -S
+        # add all changed (but not new) files to stage (index):
+        au = add -u
+        #
+        branches = branch -a
+        #
+        barebranch = !sh -c 'git symbolic-ref HEAD refs/heads/$1 && git rm --cached -r . && git clean -xfd' -
+        # usage example: git w -n5
+        w = whatchanged
+        pick = cherry-pick
+        # Add untracked, remove deleted, and show status
+        adda = !git add -A && git status
+        # show conflicting merge in gitk:
+        gitkconflict = !gitk --left-right HEAD...MERGE_HEAD
+        # prune all tracking local branches that have been removed from remote:
+        prune-all = !git remote | xargs -n 1 git remote prune
+        # show full history in gitk (including "deleted" branches and stashes)
+        history-all = !gitk --all $( git fsck | awk '/dangling commit/ {print $3}' )
+        # show list of contributors in descending order by number of commits
+        rank = shortlog -sn --no-merges
+        # given a string for an author, try to figure out full name and email:
+        whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+        # given any git object, try to show it briefly
+        whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+        # Search for a given string in all patches and print commit messages
+        # example: search for any commit that adds or removes string "foobar"
+        #     git searchcommits foobar
+        # example: search commits for string "foobar" in directory src/lib
+        #     git searchcommits foobar src/lib
+        # example: search commits for "foobar", print full diff of commit with 1 line context
+        #     git searchcommits foobar --pickaxe-all -U1 src/lib
+        searchcommits = "!f() { query=\"$1\"; shift; git log -S\"$query\" \"$@\"; }; f \"$@\""
+        cleanup = !git clean -df && git stash clear
+        human = name-rev --name-only --refs=refs/heads/*
+        l = log
+        lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+        lp = log -p
+        lt = log --topo-order
+        ly = log --pretty='tformat:%h %an (%ar): %s' --since=yesterday
+        gl = log --graph
+        l  = log --graph --pretty=format:'%C(Yellow)%h %C(Cyan)%ad %C(White)%s%C(Green)%d %C(Blue)[%an]' --date=short
+        lo = "log --graph --date=short --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+        last = "!git log -7 HEAD --abbrev-commit --date=short --pretty=format:'%h%x00%cd%x00%s%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"\\033[31m%s\\033[m \\033[32m%s\\033[m  %-.40s \\033[30;1m%s\\033[m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5 }';"
+        glt = log --pretty=format:'%h : %s' --topo-order --graph
+        rl = reflog
+        sb = show-branch
+        brm = branch --merged
+        brnm = branch --no-merged
+        rnc = revert --no-commit
+        com = checkout master
+        hard = reset --hard
+        me = merge --no-commit --no-ff
+        ls = ls-files
+        lsf = "!git ls-files | grep -i"
+        cpnx = cherry-pick --no-commit -x
+        ds = !git --no-pager diff --stat -M -w
+        changes = log --oneline --reverse
+        # fork = !sh -c 'git rev-list --boundary $1...$2 | grep ^- | cut -c2-'
+        graph = log --graph --oneline --decorate
+        info = config --list
+        pop = !git stash apply && git stash clear
+        staged = diff --cached
+        summary = log --oneline
+        tags = tag -n1 -l
+        conflicts = !git grep -e \"^<<<<<<< \\w*.*$\" --or -e \"^=======$\" --or -e \"^>>>>>>> \\w*.*$\" -n3Ep --break --heading
+        trim = !git remote prune origin && git gc
+        assume = update-index --assume-unchanged
+        assumeall = "!git st -s | awk {'print $2'} | xargs git assume"
+        assumed = "!git ls-files -v | grep ^h | cut -c 3-"
+        unassume = update-index --no-assume-unchanged
+        unassumeall = !git assumed | xargs git update-index --no-assume-unchanged
+        ours = "!f() { git checkout --ours $@ && git add $@; }; f"
+        theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
+        whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+        whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+        subpull = !git submodule foreach git pull --tags origin master
+        subrepo = !sh -c 'filter-branch --prune-empty --subdirectory-filter $1 master' -
+        flat = clone --depth 1
+        serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
+        snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+
+[gpg]
+        program = gpg2
+
+[gitflow "prefix"]
+	    feature = feature/
+	    release = release/
+	    hotfix = hotfix/
+	    support = support/
+	    versiontag = v
+
+[commit]
+	    template = ~/.git_commit_template
+
+[push]
+	    default = simple
+
+[diff]
+        tool = webstorm
+        # makes the diff much shorter when moving or copying files
+        renames = copy
+
+[merge]
+        tool = webstorm
+
+[mergetool "webstorm"]
+        cmd = webstorm merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
+        trustExitCode = true
+
+[difftool "webstorm"]
+        cmd = webstorm diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
+
+[credential]
+	helper = cache --timeout=3600
