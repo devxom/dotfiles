@@ -1,7 +1,0 @@
-[submodule "binfiles"]
-	path = binfiles
-	url = git@github.com:devxom/binfiles.git
-[submodule "bootstrap-scripts"]
-	path = bootstrap-scripts
-	url = git@github.com:devxom/bootstrap-scripts.git
-	branch = master
