@@ -8,6 +8,9 @@
         #
         barebranch = !sh -c 'git symbolic-ref HEAD refs/heads/$1 && git rm --cached -r . && git clean -xfd' -
 
+        #via http://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
+        recent-branches = !git for-each-ref --count=15 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+
         # cleanup repository
         cleanup = !git clean -df && git stash clear
 
@@ -33,7 +36,9 @@
         serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
 
         # iterative git snapshot throw stash
+        # via http://blog.apiaxle.com/post/handy-git-tips-to-stop-you-getting-fired/
         snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+        snapshots = !git stash list --grep snapshot
 
         # usage example: git w -n5
         w = whatchanged
@@ -68,15 +73,16 @@
         #     git searchcommits foobar --pickaxe-all -U1 src/lib
         searchcommits = "!f() { query=\"$1\"; shift; git log -S\"$query\" \"$@\"; }; f \"$@\""
 
+        # log
         # View abbreviated SHA, description, and history graph of the latest 20 commits
-        l = log --pretty=oneline -n 20 --graph --abbrev-commit
-
-        lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+        l = log --graph --date=short
+        changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
+        short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
+        simple = log --pretty=format:\" * %s\"
+        shortnocolor = log --pretty=format:\"%h %cr %cn %s\"
 
         # show commit for yesterday
-        ly = log --pretty='tformat:%h %an (%ar): %s' --since=yesterday
-
-        lo  = log --graph --pretty=format:'%C(Yellow)%h %C(Cyan)%ad %C(White)%s%C(Green)%d %C(Blue)[%an]' --date=short
+        yesterday = log --pretty='tformat:%h %an (%ar): %s' --since=yesterday
 
         # show last 7 commits
         last = "!git log -7 HEAD --abbrev-commit --date=short --pretty=format:'%h%x00%cd%x00%s%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"\\033[31m%s\\033[m \\033[32m%s\\033[m  %-.40s \\033[30;1m%s\\033[m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5 }';"

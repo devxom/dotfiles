@@ -1,8 +1,6 @@
-#!/usr/bin/zsh
+#!/usr/bin/env bash
 
-# ================================================
-# Aliases
-# ================================================
+alias pbcopy="xclip -sel clip"
 
 # common commands
 alias tree="tree -dA"
@@ -36,10 +34,6 @@ alias tkill="tmux kill-session -t"
 # tmux session, with single quotes so PWD works
 alias tses='tmux new -As $(basename $PWD | tr . -)'
 
-# paths
-alias p="cd ~/repos"
-alias d="cd ~/.dotfiles"
-
 # grep
 alias -g G="| grep"
 alias -g H="| head"
@@ -64,9 +58,12 @@ alias lsockT="sudo lsof -nP | grep TCP"                        # Display only op
 alias openPorts="sudo /usr/bin/lsof -i | grep LISTEN"          # All listening connections
 alias openports="ss --all --numeric --processes --ipv4 --ipv6" # All listening connections
 alias showBlocked="sudo ipfw list"                             # All ipfw rules inc/blocked IPs
-# alias myip='curl -s icanhazip.com'
-alias ping='ping -c 5'
+
+# IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ipconfig getifaddr en0"
+alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+
 alias op3000="o http://localhost:3000/"
 alias op4567="o http://localhost:4567/"
 alias op8000="o http://localhost:8000/"
@@ -95,17 +92,38 @@ alias p="ps -A f -o user:12,pid,priority,ni,pcpu,pmem,args"
 # URL-encode strings
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
 
+# Kill all the tabs in Chrome to free up memory
+# [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
+alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
+
+# Stopwatch
+alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
+
 # Add an "alert" alias for long running commands.  Use like so: sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-alias personalmail="mutt -F ~/.mutt/devxom.rc"
-alias devmail="mutt -F ~/.mutt/dev.devxom.rc"
+# Detect which `ls` flavor is in use
+if ls --color > /dev/null 2>&1; then # GNU `ls`
+	colorflag="--color"
+	export LS_COLORS='no=00:fi=00:di=01;31:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
+else # macOS `ls`
+	colorflag="-G"
+	export LSCOLORS='BxBxhxDxfxhxhxhxhxcxcx'
+fi
 
-# alias    vimsh='vim *.sh'
-# alias    vimpm='vim *.pm'
-# alias    vimpl='vim *.pl'
-# alias     vimc='vim *.{c,h}'
-# alias todo='$HOME/dev/time-spent-in-vim/vim $HOME/doc/TODO'
-# alias feh='feh -q -g 1880x980 --scale-down --auto-zoom'
+# List all files colorized in long format
+alias l="ls -lF ${colorflag}"
 
-# vim: set ts=2 expandtab sw=2:
+# List all files colorized in long format, including dot files
+alias la="ls -laF ${colorflag}"
+
+# List only directories
+alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
+
+# Always use color output for `ls`
+alias ls="command ls ${colorflag}"
+
+# Pipe my public key to my clipboard.
+alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
+
+alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
