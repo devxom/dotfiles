@@ -1,12 +1,9 @@
-# My config files
+# Personal DOtfiles and Scripts 
 
- Config file for:
+Config file for:
 
-* i3blocks
-* i3wm
-* zsh
 * git
-* mpv
+* tmux/Zelij
 * and other...
 
 ---

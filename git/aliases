@@ -1,0 +1,176 @@
+[alias]
+        # add all changed (but not new) files to stage (index):
+        au = add -u
+
+        # add untracked, remove deleted, and show status
+        adda = !git add -A && git status
+
+        #
+        barebranch = !sh -c 'git symbolic-ref HEAD refs/heads/$1 && git rm --cached -r . && git clean -xfd' -
+
+        #via http://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
+        recent-branches = !git for-each-ref --count=15 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+
+        # cleanup repository
+        cleanup = !git clean -df && git stash clear
+
+        # show contributors list by name rev
+        human = name-rev --name-only --refs=refs/heads/*
+
+        # merge shortcut without fast-forward and without commit
+        me = merge --no-commit --no-ff
+
+        # show fork
+        # fork = !sh -c 'git rev-list --boundary $1...$2 | grep ^- | cut -c2-'
+
+        # git stash apply and remove from stash
+        pop = !git stash apply && git stash clear
+
+        # find conflicts mark in repo
+        conflicts = !git grep -e \"^<<<<<<< \\w*.*$\" --or -e \"^=======$\" --or -e \"^>>>>>>> \\w*.*$\" -n3Ep --break --heading
+
+        # recursive pull for submodules
+        subpull = !git submodule foreach git pull --tags origin master
+
+        # run local git server
+        serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
+
+        # iterative git snapshot throw stash
+        # via http://blog.apiaxle.com/post/handy-git-tips-to-stop-you-getting-fired/
+        snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+        snapshots = !git stash list --grep snapshot
+
+        # usage example: git w -n5
+        w = whatchanged
+
+        # cherry pick shortcut
+        pick = cherry-pick
+
+        # show conflicting merge in gitk:
+        gitkconflict = !gitk --left-right HEAD...MERGE_HEAD
+
+        # prune all tracking local branches that have been removed from remote:
+        prune-all = !git remote | xargs -n 1 git remote prune
+
+        # show full history in gitk (including "deleted" branches and stashes)
+        history-all = !gitk --all $( git fsck | awk '/dangling commit/ {print $3}' )
+
+        # show list of contributors in descending order by number of commits
+        rank = shortlog -sn --no-merges
+
+        # given a string for an author, try to figure out full name and email:
+        whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+
+        # given any git object, try to show it briefly
+        whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+
+        # Search for a given string in all patches and print commit messages
+        # example: search for any commit that adds or removes string "foobar"
+        #     git searchcommits foobar
+        # example: search commits for string "foobar" in directory src/lib
+        #     git searchcommits foobar src/lib
+        # example: search commits for "foobar", print full diff of commit with 1 line context
+        #     git searchcommits foobar --pickaxe-all -U1 src/lib
+        searchcommits = "!f() { query=\"$1\"; shift; git log -S\"$query\" \"$@\"; }; f \"$@\""
+
+        # log
+        # View abbreviated SHA, description, and history graph of the latest 20 commits
+        l = log --graph --date=short
+        changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
+        short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
+        simple = log --pretty=format:\" * %s\"
+        shortnocolor = log --pretty=format:\"%h %cr %cn %s\"
+
+        # show commit for yesterday
+        yesterday = log --pretty='tformat:%h %an (%ar): %s' --since=yesterday
+
+        # show last 7 commits
+        last = "!git log -7 HEAD --abbrev-commit --date=short --pretty=format:'%h%x00%cd%x00%s%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"\\033[31m%s\\033[m \\033[32m%s\\033[m  %-.40s \\033[30;1m%s\\033[m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5 }';"
+
+        # View the current working tree status using the short format
+        s = status -s
+
+        # status shortcut
+        st = status
+
+        # Show the diff between the latest commit and the current state
+        d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+
+        # `git di $number` shows the diff between the state `$number` revisions ago and the current state
+        di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+
+        # Pull in remote changes for the current repository and all its submodules
+        p = !"git pull; git submodule foreach git pull origin master"
+
+        # Clone a repository including all submodules
+        c = clone --recursive
+
+        # Commit shortcut
+        ci = commit
+
+        # Commit with sign-of and gpg sign
+        cs = commit -s -S
+
+        # Commit all changes
+        ca = !git add -A && git commit -av
+
+        # Checkout shortcut
+        co = checkout
+
+        # Switch to a branch, creating it if necessary
+        go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+
+        # Show verbose output about tags, branches or remotes
+        tags = tag -l
+        branches = branch -a
+        remotes = remote -v
+
+        # List aliases
+        aliases = config --get-regexp alias
+
+        # Amend the currently staged files to the latest commit
+        amend = commit --amend --reuse-message=HEAD
+
+        # Credit an author on the latest commit
+        credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+
+        # Interactive rebase with the given number of latest commits
+        reb = "!r() { git rebase -i HEAD~$1; }; r"
+
+        # Remove the old tag with this name and tag the latest commit with it.
+        retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
+
+        # Find branches containing commit
+        fb = "!f() { git branch -a --contains $1; }; f"
+
+        # Find tags containing commit
+        ft = "!f() { git describe --always --contains $1; }; f"
+
+        # Find commits by source code
+        fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+
+        # Find commits by commit message
+        fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+
+        # Remove branches that have already been merged with master
+        # a.k.a. ‘delete merged’
+        dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
+        # List contributors with number of commits
+        contributors = shortlog --summary --numbered
+
+        # Merge GitHub pull request on top of the current branch or,
+        # if a branch name is specified, on top of the specified branch
+        mpr = "!f() { \
+            declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
+            declare branch=\"${2:-$currentBranch}\"; \
+            if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
+                git fetch origin refs/pull/$1/head:pr/$1 && \
+                git checkout -B $branch && \
+                git rebase $branch pr/$1 && \
+                git checkout -B $branch && \
+                git merge pr/$1 && \
+                git branch -D pr/$1 && \
+                git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
+            fi \
+        }; f"
